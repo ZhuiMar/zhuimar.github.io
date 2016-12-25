@@ -7,10 +7,10 @@
   <meta name="author" content="追码">
   
   <meta name="description" content="#NSDecimalNumber Ios精度
-.m文件import &amp;lt;Foundation/Foundation.h&amp;gt;
-@interface HighPrecision : NSObject
-// 加法
-+ (NSString *)plusWithA:(NSString *)A andB">
+.m文件= =Iimport @interface HighPrecision : NSObject// 加法
+
+(NSString )plusWithA:(NSString )A andB:(NSString *)B;// 减法
+(NSString )">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -72,69 +72,33 @@
 
 	  <!-- content -->
 	  <p>#NSDecimalNumber Ios精度</p>
-<h5 id="m文件"><a href="#m文件" class="headerlink" title=".m文件"></a>.m文件</h5><pre><code>import &lt;Foundation/Foundation.h&gt;
-@interface HighPrecision : NSObject
-// 加法
-+ (NSString *)plusWithA:(NSString *)A andB:(NSString *)B;
-// 减法
-+ (NSString *)minuWithA:(NSString *)A andB:(NSString *)B;
-// 乘法
-+ (NSString *)multiplyWithA:(NSString *)A andB:(NSString *)B;
-// 除法
-+ (NSString *)devideWithA:(NSString *)A andB:(NSString *)B;
-@end
-</code></pre><h5 id="h文件"><a href="#h文件" class="headerlink" title=".h文件"></a>.h文件</h5><pre><code>import &quot;HighPrecision.h&quot;
-@implementation HighPrecision
-+ (NSString *)plusWithA:(NSString *)A andB:(NSString *)B
-{
-    NSDecimalNumber *a = [NSDecimalNumber decimalNumberWithString:A];
-    NSDecimalNumber *b = [NSDecimalNumber decimalNumberWithString:B];
-    NSDecimalNumber *h = [a decimalNumberByAdding: b withBehavior:[self format]];
-    NSString *result = [h stringValue];
-    return result;
-}
-+ (NSString *)minuWithA:(NSString *)A andB:(NSString *)B
-{
-    NSDecimalNumber *a = [NSDecimalNumber decimalNumberWithString:A];
-    NSDecimalNumber *b = [NSDecimalNumber decimalNumberWithString:B];
-    NSDecimalNumber *c = [a decimalNumberBySubtracting:b withBehavior:[self format]];
-       NSString *result = [c stringValue];
-       return result;
-}
-+ (NSString *)multiplyWithA:(NSString *)A andB:(NSString *)B
-{
-    NSDecimalNumber *a = [NSDecimalNumber decimalNumberWithString:A];
-    NSDecimalNumber *b = [NSDecimalNumber decimalNumberWithString:B];
-    NSDecimalNumber *j = [a decimalNumberByMultiplyingBy:b withBehavior:[self format]];
-        NSString *result = [j stringValue];
-    return result;
-}
-+ (NSString *)devideWithA:(NSString *)A andB:(NSString *)B
-{
-    NSDecimalNumber *a = [NSDecimalNumber decimalNumberWithString:A];
-    NSDecimalNumber *b = [NSDecimalNumber decimalNumberWithString:B];
-    NSDecimalNumber *s = [a decimalNumberByDividingBy:b withBehavior:[self format]];
-    NSString *result = [s stringValue];
-    return result;
-}
-+ (NSDecimalNumberHandler *)format
-{
-    // NSRoundPlain 貌似取整
-    // NSRoundDown 只舍不入
-    // NSRoundUp 只入不舍
-    // NSRoundBankers 貌似四舍五入
-
-    NSDecimalNumberHandler *roundUp = [NSDecimalNumberHandler
-    decimalNumberHandlerWithRoundingMode:NSRoundBankers
-                                   scale:2
-                                   raiseOnExactness:NO
-                                   raiseOnOverflow:NO
-                                   raiseOnUnderflow:NO
-                                   raiseOnDivideByZero:YES];
-    return roundUp;
-}
-@end
-</code></pre>	  
+<h3 id="m文件"><a href="#m文件" class="headerlink" title=".m文件"></a>.m文件</h3><p>= =<br>Iimport <foundation foundation.h=""><br>@interface HighPrecision : NSObject<br>// 加法</foundation></p>
+<ul>
+<li>(NSString <em>)plusWithA:(NSString </em>)A andB:(NSString *)B;<br>// 减法<ul>
+<li>(NSString <em>)minuWithA:(NSString </em>)A andB:(NSString *)B;<br>// 乘法</li>
+<li>(NSString <em>)multiplyWithA:(NSString </em>)A andB:(NSString *)B;<br>// 除法</li>
+<li>(NSString <em>)devideWithA:(NSString </em>)A andB:(NSString *)B;<br>@end<br>= =</li>
+</ul>
+</li>
+</ul>
+<h3 id="h文件"><a href="#h文件" class="headerlink" title=".h文件"></a>.h文件</h3><p><code>==</code><br>import “HighPrecision.h”<br>@implementation HighPrecision</p>
+<ul>
+<li>(NSString <em>)plusWithA:(NSString </em>)A andB:(NSString <em>)B<br>{<br>  NSDecimalNumber </em>a = [NSDecimalNumber decimalNumberWithString:A];<br>  NSDecimalNumber <em>b = [NSDecimalNumber decimalNumberWithString:B];<br>  NSDecimalNumber </em>h = [a decimalNumberByAdding: b withBehavior:[self format]];<br>  NSString *result = [h stringValue];<br>  return result;<br>}</li>
+<li>(NSString <em>)minuWithA:(NSString </em>)A andB:(NSString <em>)B<br>{<br>   NSDecimalNumber </em>a = [NSDecimalNumber decimalNumberWithString:A];<br>   NSDecimalNumber <em>c = [a decimalNumberBySubtracting:b withBehavior:[self format]];<br>   NSString </em>result = [c stringValue];<br>   return result;<br>}</li>
+<li>(NSString <em>)multiplyWithA:(NSString </em>)A andB:(NSString <em>)B<br>{<br> NSDecimalNumber </em>a = [NSDecimalNumber decimalNumberWithString:A];<br> NSDecimalNumber <em>b = [NSDecimalNumber decimalNumberWithString:B];<br> NSDecimalNumber </em>j = [a decimalNumberByMultiplyingBy:b withBehavior:[self format]];<br> NSString *result = [j stringValue];<br> return result;<br>}</li>
+<li>(NSString <em>)devideWithA:(NSString </em>)A andB:(NSString <em>)B<br>{<br>  NSDecimalNumber </em>a = [NSDecimalNumber decimalNumberWithString:A];<br>  NSDecimalNumber <em>b = [NSDecimalNumber decimalNumberWithString:B];<br>  NSDecimalNumber </em>s = [a decimalNumberByDividingBy:b withBehavior:[self format]];<br>  NSString *result = [s stringValue];<br>  return result;<br>}</li>
+<li><p>(NSDecimalNumberHandler *)format<br>{<br> // NSRoundPlain 貌似取整<br> // NSRoundDown 只舍不入<br> // NSRoundUp 只入不舍<br> // NSRoundBankers 貌似四舍五入</p>
+<p> NSDecimalNumberHandler *roundUp = [NSDecimalNumberHandler</p>
+<pre><code>decimalNumberHandlerWithRoundingMode:NSRoundBankers
+                               scale:2
+                               raiseOnExactness:NO
+                               raiseOnOverflow:NO
+                               raiseOnUnderflow:NO
+                               raiseOnDivideByZero:YES];
+</code></pre><p>  return roundUp;<br>}<br>@end<br><code>==</code></p>
+</li>
+</ul>
+	  
 
 	  <div>
   		<center>
@@ -153,17 +117,13 @@
 	
 		
 	
-		
-			
-			
-			
 	
 	
 		<li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
 	
 	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
 	
-		<li class="next"><a href="/2016/12/11/hello-world/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+		<li class="next disabled"><a>next<i class="fa fa-arrow-circle-o-right"></i></a></li>
 	
 </ul>
 </div>

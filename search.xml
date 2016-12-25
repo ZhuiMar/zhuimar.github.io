@@ -7,89 +7,47 @@
       <title><![CDATA[NSDecimalNumber]]></title>
       <url>http://yoursite.com/2016/12/20/Ios%E7%B2%BE%E5%BA%A6/</url>
       <content type="html"><![CDATA[<p>#NSDecimalNumber Ios精度</p>
-<h5 id="m文件"><a href="#m文件" class="headerlink" title=".m文件"></a>.m文件</h5><pre><code>import &lt;Foundation/Foundation.h&gt;
-@interface HighPrecision : NSObject
-// 加法
-+ (NSString *)plusWithA:(NSString *)A andB:(NSString *)B;
-// 减法
-+ (NSString *)minuWithA:(NSString *)A andB:(NSString *)B;
-// 乘法
-+ (NSString *)multiplyWithA:(NSString *)A andB:(NSString *)B;
-// 除法
-+ (NSString *)devideWithA:(NSString *)A andB:(NSString *)B;
-@end
-</code></pre><h5 id="h文件"><a href="#h文件" class="headerlink" title=".h文件"></a>.h文件</h5><pre><code>import &quot;HighPrecision.h&quot;
-@implementation HighPrecision
-+ (NSString *)plusWithA:(NSString *)A andB:(NSString *)B
-{
-    NSDecimalNumber *a = [NSDecimalNumber decimalNumberWithString:A];
-    NSDecimalNumber *b = [NSDecimalNumber decimalNumberWithString:B];
-    NSDecimalNumber *h = [a decimalNumberByAdding: b withBehavior:[self format]];
-    NSString *result = [h stringValue];
-    return result;
-}
-+ (NSString *)minuWithA:(NSString *)A andB:(NSString *)B
-{
-    NSDecimalNumber *a = [NSDecimalNumber decimalNumberWithString:A];
-    NSDecimalNumber *b = [NSDecimalNumber decimalNumberWithString:B];
-    NSDecimalNumber *c = [a decimalNumberBySubtracting:b withBehavior:[self format]];
-       NSString *result = [c stringValue];
-       return result;
-}
-+ (NSString *)multiplyWithA:(NSString *)A andB:(NSString *)B
-{
-    NSDecimalNumber *a = [NSDecimalNumber decimalNumberWithString:A];
-    NSDecimalNumber *b = [NSDecimalNumber decimalNumberWithString:B];
-    NSDecimalNumber *j = [a decimalNumberByMultiplyingBy:b withBehavior:[self format]];
-        NSString *result = [j stringValue];
-    return result;
-}
-+ (NSString *)devideWithA:(NSString *)A andB:(NSString *)B
-{
-    NSDecimalNumber *a = [NSDecimalNumber decimalNumberWithString:A];
-    NSDecimalNumber *b = [NSDecimalNumber decimalNumberWithString:B];
-    NSDecimalNumber *s = [a decimalNumberByDividingBy:b withBehavior:[self format]];
-    NSString *result = [s stringValue];
-    return result;
-}
-+ (NSDecimalNumberHandler *)format
-{
-    // NSRoundPlain 貌似取整
-    // NSRoundDown 只舍不入
-    // NSRoundUp 只入不舍
-    // NSRoundBankers 貌似四舍五入
-
-    NSDecimalNumberHandler *roundUp = [NSDecimalNumberHandler
-    decimalNumberHandlerWithRoundingMode:NSRoundBankers
-                                   scale:2
-                                   raiseOnExactness:NO
-                                   raiseOnOverflow:NO
-                                   raiseOnUnderflow:NO
-                                   raiseOnDivideByZero:YES];
-    return roundUp;
-}
-@end
-</code></pre>]]></content>
+<h3 id="m文件"><a href="#m文件" class="headerlink" title=".m文件"></a>.m文件</h3><p>= =<br>Iimport <foundation foundation.h=""><br>@interface HighPrecision : NSObject<br>// 加法</foundation></p>
+<ul>
+<li>(NSString <em>)plusWithA:(NSString </em>)A andB:(NSString *)B;<br>// 减法<ul>
+<li>(NSString <em>)minuWithA:(NSString </em>)A andB:(NSString *)B;<br>// 乘法</li>
+<li>(NSString <em>)multiplyWithA:(NSString </em>)A andB:(NSString *)B;<br>// 除法</li>
+<li>(NSString <em>)devideWithA:(NSString </em>)A andB:(NSString *)B;<br>@end<br>= =</li>
+</ul>
+</li>
+</ul>
+<h3 id="h文件"><a href="#h文件" class="headerlink" title=".h文件"></a>.h文件</h3><p><code>==</code><br>import “HighPrecision.h”<br>@implementation HighPrecision</p>
+<ul>
+<li>(NSString <em>)plusWithA:(NSString </em>)A andB:(NSString <em>)B<br>{<br>  NSDecimalNumber </em>a = [NSDecimalNumber decimalNumberWithString:A];<br>  NSDecimalNumber <em>b = [NSDecimalNumber decimalNumberWithString:B];<br>  NSDecimalNumber </em>h = [a decimalNumberByAdding: b withBehavior:[self format]];<br>  NSString *result = [h stringValue];<br>  return result;<br>}</li>
+<li>(NSString <em>)minuWithA:(NSString </em>)A andB:(NSString <em>)B<br>{<br>   NSDecimalNumber </em>a = [NSDecimalNumber decimalNumberWithString:A];<br>   NSDecimalNumber <em>c = [a decimalNumberBySubtracting:b withBehavior:[self format]];<br>   NSString </em>result = [c stringValue];<br>   return result;<br>}</li>
+<li>(NSString <em>)multiplyWithA:(NSString </em>)A andB:(NSString <em>)B<br>{<br> NSDecimalNumber </em>a = [NSDecimalNumber decimalNumberWithString:A];<br> NSDecimalNumber <em>b = [NSDecimalNumber decimalNumberWithString:B];<br> NSDecimalNumber </em>j = [a decimalNumberByMultiplyingBy:b withBehavior:[self format]];<br> NSString *result = [j stringValue];<br> return result;<br>}</li>
+<li>(NSString <em>)devideWithA:(NSString </em>)A andB:(NSString <em>)B<br>{<br>  NSDecimalNumber </em>a = [NSDecimalNumber decimalNumberWithString:A];<br>  NSDecimalNumber <em>b = [NSDecimalNumber decimalNumberWithString:B];<br>  NSDecimalNumber </em>s = [a decimalNumberByDividingBy:b withBehavior:[self format]];<br>  NSString *result = [s stringValue];<br>  return result;<br>}</li>
+<li><p>(NSDecimalNumberHandler *)format<br>{<br> // NSRoundPlain 貌似取整<br> // NSRoundDown 只舍不入<br> // NSRoundUp 只入不舍<br> // NSRoundBankers 貌似四舍五入</p>
+<p> NSDecimalNumberHandler *roundUp = [NSDecimalNumberHandler</p>
+<pre><code>decimalNumberHandlerWithRoundingMode:NSRoundBankers
+                               scale:2
+                               raiseOnExactness:NO
+                               raiseOnOverflow:NO
+                               raiseOnUnderflow:NO
+                               raiseOnDivideByZero:YES];
+</code></pre><p>  return roundUp;<br>}<br>@end<br><code>==</code></p>
+</li>
+</ul>
+]]></content>
     </entry>
     
     <entry>
       <title><![CDATA[socket]]></title>
       <url>http://yoursite.com/2016/12/11/kingstone-Code-Review/</url>
-      <content type="html"><![CDATA[<h1 id="ios原生的socket"><a href="#ios原生的socket" class="headerlink" title="ios原生的socket"></a>ios原生的socket</h1><h4 id="本周至本周五"><a href="#本周至本周五" class="headerlink" title="本周至本周五"></a>本周至本周五</h4>]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Hello World]]></title>
-      <url>http://yoursite.com/2016/12/11/hello-world/</url>
-      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+      <content type="html"><![CDATA[<p><link rel="stylesheet" href="http://yandex.st/highlightjs/6.1/styles/default.min.css"></p>
+<script src="http://yandex.st/highlightjs/6.1/highlight.min.js"></script>
+<script>
+hljs.tabReplace = ' ';
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
 ]]></content>
     </entry>
     
