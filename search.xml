@@ -4,6 +4,190 @@
   
     
     <entry>
+      <title><![CDATA[英文面试]]></title>
+      <url>http://yoursite.com/2017/08/15/%E8%8B%B1%E6%96%87%E9%9D%A2%E8%AF%95/</url>
+      <content type="html"><![CDATA[<p>1.Difference between shallow copy and deep copy?<br>浅复制和深复制的区别？</p>
+<p>答案：浅层复制：只复制指向对象的指针，而不复制引用对象本身。<br>深层复制：复制引用对象本身。<br>意思就是说我有个A对象，复制一份后得到A_copy对象后，对于浅复制来说，A和A_copy指向的是同一个内存资源，复制的只不过是是一个指针，对象本身资源<br>还是只有一份，那如果我们对A_copy执行了修改操作,那么发现A引用的对象同样被修改，这其实违背了我们复制拷贝的一个思想。深复制就好理解了,内存中存在了<br>两份独立对象本身。<br>用网上一哥们通俗的话将就是：<br>浅复制好比你和你的影子，你完蛋，你的影子也完蛋<br>深复制好比你和你的克隆人，你完蛋，你的克隆人还活着。</p>
+<p>2.What is advantage of categories? What is difference between implementing a category and inheritance?<br>类别的作用？继承和类别在实现中有何区别？<br>答案：category 可以在不获悉，不改变原来代码的情况下往里面添加新的方法，只能添加，不能删除修改。<br>并且如果类别和原来类中的方法产生名称冲突，则类别将覆盖原来的方法，因为类别具有更高的优先级。</p>
+<p>类别主要有3个作用：</p>
+<p>(1)将类的实现分散到多个不同文件或多个不同框架中。</p>
+<p>(2)创建对私有方法的前向引用。</p>
+<p>(3)向对象添加非正式协议。</p>
+<p>继承可以增加，修改方法，并且可以增加属性。</p>
+<p>3.Difference between categories and extensions?<br>类别和类扩展的区别。<br>答案：category和extensions的不同在于 后者可以添加属性。另外后者添加的方法是必须要实现的。<br>extensions可以认为是一个私有的Category。</p>
+<p>4.Difference between protocol in objective c and interfaces in java?<br>obc中的协议和java中的接口概念有何不同？</p>
+<p>答案：OBC中的代理有2层含义，官方定义为 formal和informal protocol。前者和Java接口一样。<br>informal protocol中的方法属于设计模式考虑范畴，不是必须实现的，但是如果有实现，就会改变类的属性。<br>其实关于正式协议，类别和非正式协议我很早前学习的时候大致看过，也写在了学习教程里<br>“非正式协议概念其实就是类别的另一种表达方式“这里有一些你可能希望实现的方法，你可以使用他们更好的完成工作”。<br>这个意思是，这些是可选的。比如我门要一个更好的方法，我们就会申明一个这样的类别去实现。然后你在后期可以直接使用这些更好的方法。<br>这么看，总觉得类别这玩意儿有点像协议的可选协议。”<br>现在来看，其实protocal已经开始对两者都统一和规范起来操作，因为资料中说“非正式协议使用interface修饰“，<br>现在我们看到协议中两个修饰词：“必须实现(@requied)”和“可选实现(@optional)”。</p>
+<p>5.What are KVO and KVC?</p>
+<p>答案：kvc:键 - 值编码是一种间接访问对象的属性使用字符串来标识属性，而不是通过调用存取方法，直接或通过实例变量访问的机制。<br>很多情况下可以简化程序代码。apple文档其实给了一个很好的例子。<br>kvo:键值观察机制，他提供了观察某一属性变化的方法，极大的简化了代码。<br>具体用看到嗯哼用到过的一个地方是对于按钮点击变化状态的的监控。<br>比如我自定义的一个button<br>[cpp]<br>[self addObserver:self forKeyPath:@”highlighted” options:0 context:nil]; </p>
+<p>#pragma mark KVO </p>
+<ul>
+<li>(void)observeValueForKeyPath:(NSString <em>)keyPath ofObject:(id)object change:(NSDictionary </em>)change context:(void *)context<br>{<br>if ([keyPath isEqualToString:@”highlighted”] ) {<br>[self setNeedsDisplay];<br>}<br>}<br>对于系统是根据keypath去取的到相应的值发生改变，理论上来说是和kvc机制的道理是一样的。<br>对于kvc机制如何通过key寻找到value：<br>“当通过KVC调用对象时，比如：[self valueForKey:@”someKey”]时，程序会自动试图通过几种不同的方式解析这个调用。首先查找对象是否带有 someKey 这个方法，如果没找到，会继续查找对象是否带有someKey这个实例变量（iVar），如果还没有找到，程序会继续试图调用 -(id) valueForUndefinedKey:这个方法。如果这个方法还是没有被实现的话，程序会抛出一个NSUndefinedKeyException异常错误。</li>
+</ul>
+<p>(cocoachina.com注：Key-Value Coding查找方法的时候，不仅仅会查找someKey这个方法，还会查找getsomeKey这个方法，前面加一个get，或者_someKey以及_getsomeKey这几种形式。同时，查找实例变量的时候也会不仅仅查找someKey这个变量，也会查找_someKey这个变量是否存在。）</p>
+<p>设计valueForUndefinedKey:方法的主要目的是当你使用-(id)valueForKey方法从对象中请求值时，对象能够在错误发生前，有最后的机会响应这个请求。这样做有很多好处，下面的两个例子说明了这样做的好处。“<br>来至cocoa，这个说法应该挺有道理。<br>因为我们知道button却是存在一个highlighted实例变量.因此为何上面我们只是add一个相关的keypath就行了，<br>可以按照kvc查找的逻辑理解，就说的过去了。</p>
+<p>6.What is purpose of delegates?<br>代理的作用？<br>答案：代理的目的是改变或传递控制链。允许一个类在某些特定时刻通知到其他类，而不需要获取到那些类的指针。可以减少框架复杂度。<br>另外一点，代理可以理解为java中的回调监听机制的一种类似。</p>
+<p>7.What are mutable and immutable types in Objective C?<br>obc中可修改和不可以修改类型。</p>
+<p>答案：可修改不可修改的集合类。这个我个人简单理解就是可动态添加修改和不可动态添加修改一样。<br>比如NSArray和NSMutableArray。前者在初始化后的内存控件就是固定不可变的，后者可以添加等，可以动态申请新的内存空间。</p>
+<p>8.When we call objective c is runtime language what does it mean?<br>我们说的obc是动态运行时语言是什么意思？</p>
+<p>答案：多态。 主要是将数据类型的确定由编译时，推迟到了运行时。<br>这个问题其实浅涉及到两个概念，运行时和多态。<br>简单来说，运行时机制使我们直到运行时才去决定一个对象的类别，以及调用该类别对象指定方法。<br>多态：不同对象以自己的方式响应相同的消息的能力叫做多态。意思就是假设生物类（life）都用有一个相同的方法-eat;<br>那人类属于生物，猪也属于生物，都继承了life后，实现各自的eat，但是调用是我们只需调用各自的eat方法。<br>也就是不同的对象以自己的方式响应了相同的消息（响应了eat这个选择器）。<br>因此也可以说，运行时机制是多态的基础？~~~</p>
+<p>9.what is difference between NSNotification and protocol?<br>通知和协议的不同之处？</p>
+<p>答案：协议有控制链(has-a)的关系，通知没有。<br>首先我一开始也不太明白，什么叫控制链（专业术语了~）。但是简单分析下通知和代理的行为模式，我们大致可以有自己的理解<br>简单来说，通知的话，它可以一对多，一条消息可以发送给多个消息接受者。<br>代理按我们的理解，到不是直接说不能一对多，比如我们知道的明星经济代理人，很多时候一个经济人负责好几个明星的事务。<br>只是对于不同明星间，代理的事物对象都是不一样的，一一对应，不可能说明天要处理A明星要一个发布会，代理人发出处理发布会的消息后，别称B的<br>发布会了。但是通知就不一样，他只关心发出通知，而不关心多少接收到感兴趣要处理。<br>因此控制链（has-a从英语单词大致可以看出，单一拥有和可控制的对应关系。</p>
+<p>10.What is push notification?<br>什么是推送消息？</p>
+<p>11.Polymorphism？<br>关于多态性</p>
+<p>答案：多态，子类指针可以赋值给父类。<br>这个题目其实可以出到一切面向对象语言中，<br>因此关于多态，继承和封装基本最好都有个自我意识的理解，也并非一定要把书上资料上写的能背出来。<br>最重要的是转化成自我理解。</p>
+<p>12.Singleton?<br>对于单例的理解</p>
+<p>答案：11，12题目其实出的有点泛泛的感觉了，可能说是编程语言需要或是必备的基础。<br>基本能用熟悉的语言写出一个单例，以及可以运用到的场景或是你编程中碰到过运用的此种模式的框架类等。<br>进一步点，考虑下如何在多线程访问单例时的安全性。</p>
+<p>13.What is responder chain?<br>说说响应链</p>
+<p>答案： 事件响应链。包括点击事件，画面刷新事件等。在视图栈内从上至下，或者从下之上传播。<br>可以说点事件的分发，传递以及处理。具体可以去看下touch事件这块。因为问的太抽象化了<br>严重怀疑题目出到越后面就越笼统。</p>
+<p>14.Difference between frame and bounds?<br>frame和bounds有什么不同？</p>
+<p>答案:frame指的是：该view在父view坐标系统中的位置和大小。（参照点是父亲的坐标系统）<br>bounds指的是：该view在本身坐标系统中 的位置和大小。（参照点是本身坐标系统）</p>
+<p>15.Difference between method and selector?<br>方法和选择器有何不同？</p>
+<p>答案：selector是一个方法的名字，method是一个组合体，包含了名字和实现.<br>详情可以看apple文档。</p>
+<p>16.Is there any garbage collection mechanism in Objective C.?<br>OBC的垃圾回收机制？</p>
+<p>答案： OBC2.0有Garbage collection，但是iOS平台不提供。<br>一般我们了解的objective-c对于内存管理都是手动操作的，但是也有自动释放池。<br>但是差了大部分资料，貌似不要和arc机制搞混就好了。<br>求更多~~</p>
+<p>17.NSOperation queue?</p>
+<p>答案：存放NSOperation的集合类。<br>操作和操作队列，基本可以看成java中的线程和线程池的概念。用于处理ios多线程开发的问题。<br>网上部分资料提到一点是，虽然是queue，但是却并不是带有队列的概念，放入的操作并非是按照严格的先进现出。<br>这边又有个疑点是，对于队列来说，先进先出的概念是Afunc添加进队列，Bfunc紧跟着也进入队列，Afunc先执行这个是必然的，<br>但是Bfunc是等Afunc完全操作完以后，B才开始启动并且执行，因此队列的概念离乱上有点违背了多线程处理这个概念。<br>但是转念一想其实可以参考银行的取票和叫号系统。<br>因此对于A比B先排队取票但是B率先执行完操作，我们亦然可以感性认为这还是一个队列。<br>但是后来看到一票关于这操作队列话题的文章，其中有一句提到<br>“因为两个操作提交的时间间隔很近，线程池中的线程，谁先启动是不定的。”<br>瞬间觉得这个queue名字有点忽悠人了，还不如pool~<br>综合一点，我们知道他可以比较大的用处在于可以帮组多线程编程就好了。</p>
+<p>18.What is lazy loading?</p>
+<p>答案：懒汉模式，只在用到的时候才去初始化。<br>也可以理解成延时加载。<br>我觉得最好也最简单的一个列子就是tableView中图片的加载显示了。<br>一个延时载，避免内存过高，一个异步加载，避免线程堵塞。</p>
+<p>19.Can we use two tableview controllers on one viewcontroller?<br>是否在一个视图控制器中嵌入两个tableview控制器？</p>
+<p>答案：一个视图控制只提供了一个View视图，理论上一个tableViewController也不能放吧，<br>只能说可以嵌入一个tableview视图。当然，题目本身也有歧义，如果不是我们定性思维认为的UIViewController，<br>而是宏观的表示视图控制者，那我们倒是可以把其看成一个视图控制者，它可以控制多个视图控制器，比如TabbarController<br>那样的感觉。</p>
+<p>20.Can we use one tableview with two different datasources? How you will achieve this?<br>一个tableView是否可以关联两个不同的数据源？你会怎么处理？</p>
+<p>答案：首先我们从代码来看，数据源如何关联上的，其实是在数据源关联的代理方法里实现的。<br>因此我们并不关心如何去关联他，他怎么关联上，方法只是让我返回根据自己的需要去设置如相关的数据源。<br>因此，我觉得可以设置多个数据源啊，但是有个问题是，你这是想干嘛呢？想让列表如何显示，不同的数据源分区块显示？</p>
+<p>21.Object－c的类可以多重继承么？可以实现多个接口么？重写一个类的方式用继承好还是分类好？为什么？<br>Objective-c只支持单继承，如果要实现多继承的话，可以通过类别和协议的方式来实现，cocoa 中所有的类都是NSObject 的子类，多继承在这里是用protocol 委托代理 来实现的。</p>
+<p>22.#import 跟#include 又什么区别 ＃import&lt;&gt; 跟 #import””又什么区别？<br>答案：@class一般用于头文件中需要声明该类的某个实例变量的时候用到，在m文 件中还是需要使用#import而#import比起#include的好处就是不会引起交叉编译。</p>
+<p>23.类变量的@protected ,@private,@public,@package声明各有什么含义？</p>
+<p>24.id 声明的对象有什么特性？<br>答案：id是个很重要的类型，是个可以指向任何类型的指针或者可以理解为指向任何未知类型的指针。</p>
+<p>25.MVC是什么？有什么特性？为什么在iPhone上被广泛运用？<br>答案：MVC设计模式考虑三种对象：模型对象、视图对象、和控制器对象。模型对象代表 特别的知识和专业技能，它们负责保有应用程序的数据和定义操作数据的逻辑。视图对象知道如何显示应用程序的模型数据，而且可能允许用户对其进行编辑。控制 器对象是应用程序的视图对象和模型对象之间的协调者。</p>
+<p>26.对于语句NSString* testObject = [[NSData alloc] init];testObject 在编译时和运行时分别是什么类型的对象？</p>
+<p>27.什么是安全释放？</p>
+<p>28.为什么有些4.0独有的objective－c 函数在3.1上运行时会报错.而4.0独有的类在3.1上分配内存时不会报错？分配的结果是什么？</p>
+<p>29.为什么4.0独有的c函数在3.1的机器上运行不会报错（在没有调用的情况下？）而4.0独有的类名在3.1的机器上一运行就报错？</p>
+<p>30.异常exception 怎么捕获？不同的CPU结构上开销怎样？C中又什么类似的方法？</p>
+<p>31.property中属性retain,copy,assgin的含义分别是什么？有什么区别？将其转换成get／set方法怎么做？有什么注意事项？</p>
+<p>32.委托是什么？委托的property声明用什么属性？为什么？</p>
+<p>34.Cocoa中有虚基类的概念么？怎么简洁的实现？</p>
+<p>35.自动释放池跟GC（垃圾回收）有什么区别？iPhone上有GC么？［pool release］ 和［pool drain］有什么区别？<br>iPhone上没有GC。iPhone开发的时候没有垃圾回收机制。<br>在垃圾回收环境中，release是一个空操作。因此，NSAutoreleasePool提供了drain方法，在引用计数环境中，该方法的作用等同于调用release，但在垃圾回收环境中，它会触发垃圾回收（如果自上次垃圾回收以来分配的内存大于当前的阈值）。因此，在通常情况下，您应该使用drain而不是release来销毁自动释放池。</p>
+<p>36.<br>for(int index = 0; index &lt; 20; index ++){<br>NSString <em>tempStr = @”tempStr”;<br>NSLog(tempStr);<br>NSNumber </em>tempNumber = [NSNumber numberWithInt:2];<br>NSLog(tempNumber);<br>}<br>这段代码有什么问题.？会不会造成内存泄露（多线程）？在内存紧张的设备上做大循环时自动释放池是写在循环内好还是循环外好？为什么？</p>
+<p>37.内存管理的几条原则时什么？按照默认法则.那些关键字生成的对象需要手动释放？在和property结合的时候怎样有效的避免内存泄露？</p>
+<p>38.在一个对象释放前.如果他被加到了notificationCenter 中.不在notificationcenter中remove这个对象可能会出现什么问题？</p>
+<p>39.怎样实现一个 singleton的类.给出思路。</p>
+<p>40.什么是序列化或者Acrchiving,可以用来做什么,怎样与copy结合,原理是什么?.</p>
+<ol>
+<li>线程与进程的区别和联系?<br>答案: 进程和线程都是由操作系统所体会的程序运行的基本 单元，系统利用该基本单元实现系统对应用的并发性。<br>程和线程的主要差别在于它们是不同的操作系统资源 管理方式。进程有独立的地址空间，一个进程崩溃后，在保护模式下不会对其它进程产生影响，而线程只是一个进程中的不同执行路径。线程有自己的堆栈和局部变 量，但线程之间没有单独的地址空间，一个线程死掉就等于整个进程死掉，所以多进程的程序要比多线程的程序健壮，但在进程切换时，耗费资源较大，效率要差一 些。但对于一些要求同时进行并且又要共享某些变量的并发操作，只能用线程，不能用进程。</li>
+</ol>
+<p>42.在iphone上有两件事情要做,请问是在一个线程里按顺序做效率高还是两个线程里做效率高？为什么？</p>
+<p>43.runloop是什么？在主线程中的某个函数里调用了异步函数，怎么样block当前线程,且还能响应当前线程的timer事件，touch事件等.</p>
+<p>44.ios平台怎么做数据的持久化?coredata和sqlite有无必然联系？coredata是一个关系型数据库吗？<br>iOS中可以有四种持久化数据的方式： 属性列表、对象归档、SQLite3和Core Data；core data可以使你以图形界面的方式快速的定义app的数据模型，同时在你的代码中容易获取到它。core data提供了基础结构去处理常用的功能，例如保存，恢复，撤销和重做，允许你在app中继续创建新的任务。在使用core data的时候，你不用安装额外的数据库系统，因为core data使用内置的sqlite数据库。core data将你app的模型层放入到一组定义在内存中的数据对象。core data会追踪这些对象的改变，同时可以根据需要做相反的改变，例如用户执行撤销命令。当core data在对你app数据的改变进行保存的时候，core data会把这些数据归档，并永久性保存。<br>mac os x中sqlite库，它是一个轻量级功能强大的关系数据引擎，也很容易嵌入到应用程序。可以在多个平台使用，sqlite是一个轻量级的嵌入式sql数据库编程。与core data框架不同的是，sqlite是使用程序式的，sql的主要的API来直接操作数据表。<br>Core Data不是一个关系型数据库，也不是关系型数据库管理系统(RDBMS)。虽然Core Dta支持SQLite作为一种存储类型，但它不能使用任意的SQLite数据库。Core Data在使用的过程种自己创建这个数据库。Core Data支持对一、对多的关系。</p>
+<p>45.阐述一个nil对象从interface bulider产生，到载入程序运行空间，最后被释放时所经历的生命周期.</p>
+<p>46.notification是同步还是异步? kvo是同步还是异步？notification是全进程空间的通知吗？kvo呢？</p>
+<p>47.kvc是什么?kvo是什么?有什么特性？<br>48.响应者链是什么？<br>49.unix上进程怎么通信？<br>UNIX主要支持三种通信方式：</p>
+<ol>
+<li>基本通信：主要用来协调进程间的同步和互斥<br>(1)锁文件通信<br>通信的双方通过查找特定目录下特定类型的文件(称锁文件)来完成进程间  对临界资源访问时的互斥；例如进程p1访问一个临界资源，首先查看是否有一个特定类型文件，若有，则等待一段时间再查找锁文件。<br>(2)记录锁文件</li>
+<li>管道通信：适应大批量的数据传递</li>
+<li>IPC：适应大批量的数据传递</li>
+</ol>
+<p>50.timer的间隔周期准吗？为什么？怎样实现一个精准的timer?</p>
+<p>51.UIscrollVew用到了什么设计模式？还能再foundation库中找到类似的吗？（答案众多，不知道哪个是对的～～）<br>模板(Template)模式，所有datasource和delegate接口都是模板模式的典型应用，<br>组合模式composition，所有的containerview都用了这个模式<br>观察者模式observer，所有的UIResponder都用了这个模式。</p>
+<p>52如果要开发一个类似eclipse的软件，支持插件结构。且开放给第三方开发。你会怎样去设计它？（大概思路）</p>
+<ol>
+<li><p>main()<br>{<br>int a[5]={1,2,3,4,5};<br>int <em>ptr=(int </em>)(&amp;a+1);<br>printf(“%d,%d”,<em>(a+1),</em>(ptr-1));<br>}<br>答：2,5<br><em>(a+1)就是a[1]，</em>(ptr-1)就是a[4],执行结果是2.5<br>，&amp;a+1不是首地址+1，系统会认为加一个a数组的偏 移，是偏移了一个数组的大小（本例是5个int，int <em>ptr=(int </em>)(&amp;a+1);<br>则ptr实际 是&amp;(a[5]),也就是a+5<br>原因如下：<br>　　&amp;a是数组指针，其类型为 int (<em>)[5];<br>而指针加1要根据指针类型加上一定的值，不同类型的指针+1之后增加的大小不同。a是长度为5的int数组指针，所以要加 5</em>sizeof(int)所以ptr实际是a[5]，但是prt与(&amp;a+1)类型是不一样的(这点很重要)，所以prt-1只会减去sizeof(int*)，a,&amp;a的地址是一样的，但意思不一样，a是数组首地址，也就是a[0]的地址，&amp;a是对象（数组）首地址，a+1是数组下一元素的地址，即a[1],&amp;a+1是下一个对象的地址，即a[5].</p>
+</li>
+<li><p>以下为Windows NT下的32位C++程序，请计算sizeof的值</p>
+</li>
+</ol>
+<p>voidFunc ( char str[100] )<br>{<br>sizeof( str ) =?<br>}<br>void *p = malloc( 100 );<br>sizeof ( p ) = ?<br>答案：这题 很常见了,Func( char str[100] )函数中数组名作为函数形参时，在函数体内，数组名失去了本身的内涵，仅仅只是一个指针；在失去其内涵的同时，它还失去了其常量特性，可以作自增、自减等操作，可以被修改。Windows NT 32位平台下，指针的长度（占用内存的大小）为4字节，故sizeof( str ) 、sizeof( p ) 都为4。</p>
+<p>55.- （void）<em>getNSString(const NSString </em>inputString)<br>{inputString =@”This is a main test\n”;<br>return ;}<br>-main(void)<br>{NSString <em>a=@”Main”;<br>NSString </em>aString = [NSStringstringWithString:@”%@”,getNSString(a)];<br>NSLog(@”%@\n”, aString);}<br>最后问输出的字符串:NULL,output在 函数返回后，内存已经被释放。</p>
+<p>56.列举几种进程的同步机制，并比较其优缺点。<br>答案：  原子操作信号量机制    自旋锁    管程，会合，分布式系统 </p>
+<p>进程之间通信的途径<br>答案：共享存储系统消息传递系统管道：以文件系统为基础<br>进程死锁的原因<br>答案：资源竞争及进程推进顺序非法<br>死锁的4个必要条 件<br>答案：互斥、请求保持、不可剥夺、环路<br>死锁的处理<br>答案：鸵鸟策略、预防策略、避免策略、检测与解除死锁</p>
+<p>57.堆和栈的区别<br>管理方式：对于栈来讲，是由编译器自动管理，无需我们手工控制；对于堆来说，释放工作由程序员控制，容易产生memory leak。<br>申请大小：<br>栈：在Windows下,栈是向低地址扩展的数据结构，是一块连续的内存的区域。这句话的意思是栈顶的地址和栈的最大容量是系统预先规定好的，在WINDOWS下，栈的大小是2M（也有的说是1M，总之是一个编译时就确定的常数），如果申请的空间超过栈的剩余空间时，将提示overflow。因此，能从栈获得的空间较小。<br>堆：堆是向高地址扩展的数据结构，是不连续的内存区域。这是由于系统是用链表来存储的空闲内存地址的，自然是不连续的，而链表的遍历方向是由低地址向高地址。堆的大小受限于计算机系统中有效的虚拟内存。由此可见，堆获得的空间比较灵活，也比较大。<br>碎片问题：对于堆来讲，频繁的new/delete势必会造成内存空间的不连续，从而造成大量的碎片，使程序效率降低。对于栈来讲，则不会存在这个 问题，因为栈是先进后出的队列，他们是如此的一一对应，以至于永远都不可能有一个内存块从栈中间弹出<br>分配方式：堆都是动态分配的，没有静态分配的堆。栈有2种分配方式：静态分配和动态分配。静态分配是编译器完成的，比如局部变量的分配。动态分配由alloca函数进行分配，但是栈的动态分配和堆是不同的，他的动态分配是由编译器进行释放，无需我们手工实现。<br>分配效率：栈是机器系统提供的数据结构，计算机会在底层对栈提供支持：分配专门的寄存器存放栈的地址，压栈出栈都有专门的指令执行，这就决定了栈的效率比较高。堆则是C/C++函数库提供的，它的机制是很复杂的。</p>
+<p>58.什么是键-值,键路径是什么?<br>模型的性质是通过一个简单的键（通常是个字符串）来指定的。视图和控制器通过键来查找相应的属性值。在一个给定的实体中，同一个属性的所有值具有相同的数据类型。键-值编码技术用于进行这样的查找—它是一种间接访问对象属性的机制。<br>键路径是一个由用点作分隔符的键组成的字符串，用于指定一个连接在一起的对象性质序列。第一个键的<br>性质是由先前的性质决定的，接下来每个键的值也是相对于其前面的性质。键路径使您可以以独立于模型<br>实现的方式指定相关 对象的性质。通过键路径，您可以指定对象图中的一个任意深度的路径，使其指向相<br>关对象的特定属性。</p>
+<p>59.c和obj-c如何混用<br>1）obj-c的编译器处理后缀为m的文件时，可以识别obj-c和c的代码，处理mm文件可以识别obj-c,c,c++代码，但cpp文件必须只能用c/c++代码，而且cpp文件include的头文件中，也不能出现obj- c的代码，因为cpp只是cpp<br>2) 在mm文件中混用cpp直接使用即可，所以obj-c混cpp不是问题<br>3）在cpp中混用obj- c其实就是使用obj-c编写的模块是我们想要的。<br>如果模块以类实现，那么要按照cpp class的标准写类的定义，头文件中不能出现obj-c的东西，包括#import cocoa的。实现文件中，即类的实现代码中可以使用obj-c的东西，可以import,只是后缀是mm。<br>如果模块以函数实现，那么头文件要按 c的格式声明函数，实现文件中，c++函数内部可以用obj-c，但后缀还是mm或m。</p>
+<p>总结：只要cpp文件和cpp include的文件中不包含obj-c的东西就可以用了，cpp混用obj-c的关键是使用接口，而不能直接使用实现代码，实际上cpp混用的是 obj-c编译后的o文件，这个东西其实是无差别的，所以可以用。obj-c的编译器支持cpp.</p>
+<p>60.目标-动作机制<br>目标是动作消息的接收者。一个控件，或者更为常见的是它的单元，以插座变量（参见”插座变量”部分）<br>的形式保有其动作消息的目标。<br>动作是控件发送给目标的消息，或者从目标的角度看，它是目标为了响应动作而实现的方法。<br>程序需要某些机制来进行事件和指令的翻译。这个机制就是目标-动作机制。</p>
+<p>61.cocoatouch框架<br>iPhoneOS 应用程序的基础Cocoa Touch 框架重用了许多 Mac 系统的成熟模式，但是它更多地专注于触摸的接口和优化。UIKit 为您提供了在 iPhone OS 上实现图形，事件驱动程序的基本工具，其建立在和 Mac OS X 中一样的 Foundation 框架上，包括文件处理，网络，字符串操作等。<br>CocoaTouch 具有和 iPhone 用户接口一致的特殊设计。有了 UIKit，您可以使用 iPhone OS 上的独特的图形接口控件，按钮，以及全屏视图的功能，您还可以使用加速仪和多点触摸手势来控制您的应用。<br>各色俱全的框架 除了UIKit 外，Cocoa Touch 包含了创建世界一流iPhone 应用程序需要的所有框架，从三维图形，到专业音效，甚至提供设备访问 API 以控制摄像头，或通过 GPS 获知当前位置。Cocoa Touch 既包含只需要几行代码就可以完成全部任务的强大的 Objective-C 框架，也在需要时提供基础的 C 语言 API 来直接访问系统。这些框架包括：<br>CoreAnimation<br>通过 CoreAnimation，您就可以通过一个基于组合独立图层的简单的编程模型来创建丰富的用户体验。<br>CoreAudio<br>CoreAudio 是播放，处理和录制音频的专业技术，能够轻松为您的应用程序添加强大的音频功能。<br>CoreData<br>提供了一个面向对象的数据管理解决方案，它易于使用和理解，甚至可处理任何应用或大或小的数据模型。<br>功能列表：框架分类<br>下面是 CocoaTouch 中一小部分可用的框架：<br>•   音频和视频<br>•   Core Audio<br>•   OpenAL<br>•   Media Library<br>•   AV Foundation<br>•   数据管理<br>•   Core Data<br>•   SQLite<br>•   图形和动画<br>•   Core Animation<br>•   OpenGL ES<br>•   Quartz 2D<br>•   网络/li&gt;<br>•   Bonjour<br>•   WebKit<br>•   BSD Sockets<br>•   用户应用<br>•   Address Book<br>•   Core Location<br>•   Map Kit<br>•   Store Kit</p>
+<p>62.objc的内存管理<br>如果您通过分配和初始化（比如[[MyClass alloc] init]）的方式来创建对象，您就拥<br>有这个对象，需要负责该对象的释放。这个规则在使用NSObject的便利方法new 时也同样适用.<br>如果您拷贝一个对象，您也拥有拷贝得到的对象，需要负责该对象的释放.<br>如果您保持一个对象，您就部分拥有这个对象，需要在不再使用时释放该对象。<br>如果您从其它对象那里接收到一个对象，则您不拥有该对象，也不应该释放它（这个规则有少数<br>的例外，在参考文档中有显式的说明）。</p>
+<p>63.自动释放池是什么,如何工作<br>当您向一个对象发送一个autorelease消息时，Cocoa就会将该对 象的一个引用放入到最新的自动释放池。它仍然是个正当的对象，因此自动释放池定义的作用域内的其它对象可以向它发送消息。当程序执行到作用域结束的位置时，自动释放池就会被释放，池中的所有对象也就被释放。</p>
+<ol>
+<li>ojc-c 是通过一种”referringcounting”(引用计数)的方式来管理内存的, 对象在开始分配内存(alloc)的时候引用计数为一,以后每当碰到有copy,retain的时候引用计数都会加一, 每当碰到release和autorelease的时候引用计数就会减一,如果此对象的计数变为了0, 就会被系统销毁.</li>
+<li>NSAutoreleasePool 就是用来做引用计数的管理工作的,这个东西一般不用你管的.</li>
+<li>autorelease和release没什么区别,只是引用计数减一的时机不同而已,autorelease会在对象的使用真正结束的时候才做引用计数减一.</li>
+</ol>
+<p>64.类工厂方法是什么<br>类工厂方法的实现是为了向客户提供方便，它们将分配和初始化合在一个步骤中， 返回被创建的对象，并<br>进行自动释放处理。这些方法的形式是+ (type)className…（其中 className不包括任何前缀）。<br>工厂方法可能不仅仅为了方便使用。它们不但可以将分配和初始化合在一起，还可以为初始化过程提供对<br>象的分配信息。<br>类工厂方法的另一个目的是使类（比如NSWorkspace）提供单件实例。虽 然init…方法可以确认一<br>个类在每次程序运行过程只存在一个实例，但它需要首先分配一个“生的”实例，然后还必须释放该实例。<br>工厂 方法则可以避免为可能没有用的对象盲目分配内存。</p>
+<p>65.单件实例是什么<br>Foundation和Application Kit 框架中的一些类只允许创建单件对象，即这些类在当前进程中的唯一实例。举例来说，NSFileManager和NSWorkspace 类在使用时都是基于进程进行单件对象的实例化。当向这些类请求实例的时候，它们会向您传递单一实例的一个引用，如果该实例还不存在，则首先进行实例的分配和初始化。 单件对象充当控制中心的角色，负责指引或协调类的各种服务。如果类在概念上只有一个实例（比如<br>NSWorkspace），就应该产生一个单件实例，而不是多个实例；如果将来某一天可能有多个实例，您可<br>以使用单件实例机制，而不是工厂方法或函数。</p>
+<p>66.动态绑定—在运行时确定要调用的方法<br>动态绑定将调用方法的确定也推迟到运行时。在编译时，方法的调用并不和代码绑定在一起，只有在消实发送出来之后，才确定被调用的代码。通过动态类型和动态绑定技术，您的代码每次执行都可以得到不同的结果。运行时因子负责确定消息的接 收者和被调用的方法。运行时的消息分发机制为动态绑定提供支持。当您向一个动态类型确定了的对象发送消息时，运行环境系统会通过接收者的isa指针定位对象的类，并以此为起点确定被调用的方法，方法和消息是动态绑定的。而且，您不必在Objective-C 代码中做任何工作，就可以自动获取动态绑定的好处。您在每次发送消息时，</p>
+<p>特别是当消息的接收者是动态类型已经确定的对象时，动态绑定就会例行而 透明地发生。</p>
+<p>67.obj-c的优缺点<br>objc优点：</p>
+<p>1)Cateogies </p>
+<p>2) Posing </p>
+<p>3) 动态识别</p>
+<p>4) 指标计算 </p>
+<p>5）弹性讯息传递</p>
+<p>6) 不是一个过度复杂的 C 衍生语言</p>
+<p>7) Objective-C 与 C++ 可混合编程</p>
+<p>缺点: </p>
+<p>1) 不支援命名空間 </p>
+<p>2) 不支持运算符重载<br>3） 不支持多重继承<br>4） 使用动态运行时类型，所有的方法都是函数调用，所以很多编译时优化方法都用不到。（如内联函数等），性能低劣。</p>
+<p>68.readwrite，readonly，assign，retain，copy，nonatomic 属性的作用？<br>@property是 一个属性访问声明，扩号内支持以下几个属性：<br>1，getter=getterName，setter=setterName，设置setter与 getter的方法名<br>2，readwrite,readonly，设置可供访问级别<br>2，assign，setter方法直接赋值，不进行 任何retain操作，为了解决原类型与环循引用问题<br>3，retain，setter方法对参数进行release旧值再retain新值，所有实现都是这个顺序(CC上有相关资料)<br>4，copy，setter方法进行Copy操作，与retain处理流程一样，先旧值release，再 Copy出新的对象，retainCount为1。这是为了减少对上下文的依赖而引入的机制。<br>5，nonatomic，非原子性访问，不加同步， 多线程并发访问会提高性能。注意，如果不加此属性，则默认是两个访问方法都为原子型事务访问。锁被加到所属对象实例级(我是这么理解的…)。</p>
+<p>69.ViewController的 didReceiveMemoryWarning 是在什么时候被调用的？（87题）<br>70.谈谈你对ARC 的认识和理解？</p>
+<ol>
+<li>ObjC中，与alloc语义相反的方法是dealloc还是release？与retain语义相反的方法是dealloc还是release，为什么？需要与alloc配对使用的方法是dealloc还是release，为什么？<br>alloc与dealloc语意相反，alloc是创建变量，dealloc是释放变量。 retain 对应release,retain 保留一个对象。调用之后，变量的计数加1。或许不是很明显，在这有例为证：                 </li>
+</ol>
+<ul>
+<li>(void)setName : (NSString<em>) name {<br>[name retain];<br>[myname release];<br>myname = name; }<br>我们来解释一下：设想，用户在调用这个函数的时候，他注意了内存的管理，所以他小心的写了如下代码：<br>NSString</em> newname = [[NSString alloc] initWithString: @”John”];<br>[aClasssetName: newname];<br>[newnamerelease];<br>我们来看一看newname的计数是怎么变化的。首先，它被alloc，count = 1; 然后，在setName中，它被retain，count = 2; 最后，用户自己释放newname，count= 1，myname指向了newname。这也解释了为什么需要调用[myname release]。我们需要在给myname赋新值的时候，释放掉以前老的变量。retain 之后直接dealloc对象计数器没有释放。alloc 需要与release配对使用，因为alloc 这个函数调用之后，变量的计数加1。所以在调用alloc 之后，一定要调用对应的release。另外，在release一个变量之后，他的值仍然有效，所以最好是后面紧接着再var = nil。</li>
+</ul>
+<ol>
+<li><p>在一个对象的方法里面:<br>self.name<a href="http://self.name/" target="_blank" rel="external">http://self.name/</a> = “object”;<br>和<br>name ＝”object”<br>有什么不同?</p>
+</li>
+<li><p>这段代码有什么问题:<br>@implementation Person</p>
+</li>
+</ol>
+<ul>
+<li>(void)setAge:(int)newAge {<br>self.age = newAge;<br>}<br>@end</li>
+</ul>
+<ol>
+<li>什么是retaincount?</li>
+</ol>
+<p>75.以下每行代码执行后，person对象的retain count分别是多少<br>Person *person = [[Person alloc] init];<br>[person retain];<br>[person release];<br>[person release];</p>
+<p>76.为什么很多内置类如UITableViewController的delegate属性都是assign而不是retain的？</p>
+<p>77.定义属性时，什么情况使用copy，assign，和retain？<br>assign用于简单数据类型，如NSInteger,double,bool,retain和copy用户对象，copy用于当 a指向一个对象，b也想指向同样的对象的时候，如果用assign，a如果释放，再调用b会crash,如果用copy 的方式，a和b各自有自己的内存，就可以解决这个问题。retain 会使计数器加一，也可以解决assign的问题。另外：atomic和nonatomic用来决定编译器生成的getter和setter是否为原子操作。在多线程环境下，原子操作是必要的，否则有可能引起错误的结果。加了atomic，setter函数会变成下面这样：<br>if(property != newValue) {<br>[propertyrelease];<br>property = [newValueretain];<br>} </p>
+<ol>
+<li><p>autorelease的对象是在什么时候被release的？<br>答：autorelease实际上只是把对release的调用延迟了，对于每一个Autorelease，系统只是把该Object放入了当前的Autoreleasepool中，当该pool被释放时，该pool中的所有Object会被调用Release。对于每一个Runloop，系统会隐式创建一个Autoreleasepool，这样所有的releasepool会构成一个象CallStack一样的一个栈式结构，在每一个Runloop结束时，当前栈顶的Autoreleasepool会被销毁，这样这个pool里的每个Object（就是autorelease的对象）会被release。那什么是一个Runloop呢？一个UI事件，Timer call，delegate call， 都会是一个新的Runloop。那什么是一个Runloop呢？一个UI事件，Timer call，delegate call， 都会是一个新的Runloop。</p>
+</li>
+<li><p>这段代码有什么问题,如何修改<br>for (int i = 0; i &lt; someLargeNumber; i++)<br>{<br>NSString *string = @”Abc”;<br>string = [string lowercaseString];<br>string = [stringstringByAppendingString:@”xyz”];<br>NSLog(@“%@”, string);<br>}</p>
+</li>
+<li><p>autorelease和垃圾回收机制(gc)有什么关系？IPhone OS有没有垃圾回收（gc）？</p>
+</li>
+<li><p>Objective C中的protocal是什么？<br>@protocal obj里面的协议就如同java里面的interface。</p>
+</li>
+<li><p>Objective C中的selector 是什么？<br>你可以理解 @selector()就是取类方法的编号,他的行为基本可以等同C语言的中函数指针,只不过C语言中，可以把函数名直接赋给一个函数指针，而Objective-C的类不能直接应用函数指针，这样只能做一个@selector语法来取.它的结果是一个SEL类型。这个类型本质是类方法的编号(函数地址)。</p>
+</li>
+<li><p>Objective C中的category是什么?<br>Objective-C提供了一个非常灵活的类(Class)扩展机制－类别(Category)。类别用于对一个已经存在的类添加方法(Methods)。你只需要知道这个类的公开接口，不需要知道类的源代码。需要注意的是，类别不能为已存在的类添加实例变量(Instance Variables)。<br>子类(subclassing)是进行类扩展的另一种常用方法。与子类相比，类别最主要的优点是：系统中已经存在的类可以不需修改就可使用类别的扩展功能。<br>类别的第二大优点是实现了功能的局部化封装。类别定义可以放在一个已存在的类(类A)的定义文件中(.h)。这意味着这个类别只有在类A被引用的前提下才会被外部看到。如果另一个类(类B)不需要用到类A的功能(没有包含类A的.h文件)，也就不会看到依附类A存在的类别。iOS SDK中广泛运用这种类别定义法来封装功能。</p>
+</li>
+<li><p>什么是Notification？什么时候用delegate，什么时候用Notification？<br>观察者模式，controller向defaultNotificationCenter添加自己的notification，其他类注册这个notification就可以收到通知，这些类可以在收到通知时做自己的操作（多观察者默认随机顺序发通知给观察者们，而且每个观察者都要等当前的某个观察者的操作做完才能轮到他来操作，可以用NotificationQueue的方式安排观察者的反应顺序，也可以在添加观察者中设定反映时间，取消观察需要在viewDidUnload跟dealloc中都要注销）。<br>delegate针对one-to-one关系，并且reciever可以返回值给sender，notification可以针对one-to-one/many/none,reciever无法返回值给sender.所以，delegate用于sender希望接受到reciever的某个功能反馈值，<br>notification用于通知多个object某个事件。</p>
+</li>
+<li><p>什么是KVC和KVO？Notification和KVO有什么不同？KVO在ObjC中是怎么实现的？</p>
+</li>
+<li><p>ViewController 的 loadView,viewDidLoad, viewDidUnload 分别是在什么时候调用的？在自定义ViewController的时候这几个函数里面应该做什么工作？<br>答：viewDidLoad在view 从nib文件初始化时调用，loadView在controller的view为nil时调用。此方法在编程实现view时调用,view 控制器默认会注册memory warning notification,当view controller的任何view 没有用的时候，viewDidUnload会被调用，在这里实现将retain 的view release,如果是retain的IBOutlet view 属性则不要在这里release,IBOutlet会负责release 。</p>
+</li>
+<li><p>ViewController 的didReceiveMemoryWarning 是在什么时候被调用的？UIViewController类中didReceiveMemoryWarning默认的操作是什么？<br>答：默认调用[superdidReceiveMemoryWarning]</p>
+</li>
+<li><p>UITableViewController 中，创建UITableViewCell时，initWithSytle:resuseIdentifier中，reuseIdentifier有什么用？简述UITableViewCell的复用原理.<br>复用队列的元素增加：只有在cell被滑动出界面的时候，此cell才会被加入到复用队列中。每次在创建cell的时候，程序会首先通过调用dequeueReusableCellWithIdentifier:cellType方法，到复用队列中去寻找标示符为“cellType”的cell，如果找不到，返回nil，然后程序去通过调用[[[UITableViewCell alloc]initWithStyle:style reuseIdentifier:cellType] autorelease]来创建标示符为“cellType”的cell。</p>
+</li>
+<li><p>UIView 和CALayer 有什么区别?<br>两者最大的区别是，图层不会直接渲染到屏幕上。</p>
+</li>
+<li><p>以 UIView 类animateWithDuration:animations: 为例，简述UIView动画原理。</p>
+</li>
+</ol>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[重视法抗lds]]></title>
+      <url>http://yoursite.com/2017/07/24/%E9%87%8D%E8%A7%86%E6%B3%95%E6%8A%97lds/</url>
+      <content type="html"></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Ios静态库的制作]]></title>
       <url>http://yoursite.com/2017/03/16/%E9%9D%99%E6%80%81%E5%BA%93%E7%9A%84%E5%88%B6%E4%BD%9C/</url>
       <content type="html"><![CDATA[<h3 id="一、什么是库？"><a href="#一、什么是库？" class="headerlink" title="一、什么是库？"></a>一、什么是库？</h3><p>库是共享程序代码的方式，一般分为静态库和动态库。<br><code>静态库：</code>链接时完整地拷贝至可执行文件中，被多次使用就有多份冗余拷贝。<br><code>动态库：</code>链接时不复制，程序运行时由系统动态加载到内存，供程序调用，系统只加载一次，多个程序共用，节省内存。</p>
@@ -807,6 +991,47 @@
     </entry>
     
     <entry>
+      <title><![CDATA[Ios图片缓存的优化]]></title>
+      <url>http://yoursite.com/2015/12/30/%E5%9B%BE%E7%89%87%E7%BC%93%E5%AD%98%E7%9A%84%E4%BC%98%E5%8C%96/</url>
+      <content type="html"><![CDATA[<h2 id="图片缓存的优化"><a href="#图片缓存的优化" class="headerlink" title="图片缓存的优化"></a>图片缓存的优化</h2><h4 id="一：从图片入手"><a href="#一：从图片入手" class="headerlink" title="一：从图片入手"></a>一：从图片入手</h4><p>内存占用大原因是图片太大，所以想到对图片进行压缩。找了好多压缩工具，最后发现一款比较好用的，名字是ppDuck（pp鸭），这里是<a href="http://ppduck.com/" target="_blank" rel="external">下载地址</a>,图片压缩后，内存确实是暂用较少了，但还没有根本结局。</p>
+<h4 id="二：从加载图片的方式考虑"><a href="#二：从加载图片的方式考虑" class="headerlink" title="二：从加载图片的方式考虑"></a>二：从加载图片的方式考虑</h4><p>正确选择图片加载方式能够对内存优化起到很大的作用，常见的图片加载方式有下面三种：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//方法1  </span></div><div class="line"><span class="built_in">UIImage</span> *imag1 = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"image.png"</span>];  </div><div class="line"><span class="comment">//方法2  </span></div><div class="line"><span class="built_in">UIImage</span> *image2 = [<span class="built_in">UIImage</span> imageWithContentsOfFile:[[<span class="built_in">NSBundle</span> mainBundle] pathForResource:<span class="string">@"image@2x"</span> ofType:.png]];  </div><div class="line"><span class="comment">//方法3  </span></div><div class="line"><span class="built_in">NSData</span> *imageData = [<span class="built_in">NSData</span> dataWithContentsOfFile:[[<span class="built_in">NSBundle</span> mainBundle] pathForResource:<span class="string">@"image@2x"</span> ofType:png]];  </div><div class="line"><span class="built_in">UIImage</span> *image3 = [<span class="built_in">UIImage</span> imageWithData:imageData]；</div></pre></td></tr></table></figure>
+<ul>
+<li>第一种方法:imageNamed:<br>为什么有两种方法完成同样的事情呢？imageNamed的优点在于可以缓存已经加载的图片。苹果的文档中有如下说法：这种方法会首先在系统缓存中根据指定的名字寻找图片，如果找到了就返回。如果没有在缓存中找到图片，该方法会从指定的文件中加载图片数据，并将其缓存起来，然后再把结果返回。对于同一个图像，系统只会把它Cache到内存一次，这对于图像的重复利用是非常有优势的。例如：你需要在 一个TableView里重复加载同样一个图标，那么用imageNamed加载图像，系统会把那个图标Cache到内存，在Table里每次利用那个图 像的时候，只会把图片指针指向同一块内存。这种情况使用imageNamed加载图像就会变得非常有效。</li>
+</ul>
+<ul>
+<li><p>第二种方法和第三种方法本质是一样的:imageWithContentsOfFile:和imageWithData:<br>而imageWithContentsOfFile方法只是简单的加载图片，并不会将图片缓存起来，图像会被系统以数据方式加载到程序。当你不需要重用该图像，或者你需要将</p>
+</li>
+<li><p>如何选择</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//方法1 cach  </span></div><div class="line"><span class="built_in">UIImage</span> *imag1 = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"image.png"</span>];  </div><div class="line"><span class="comment">//方法2 no cach  </span></div><div class="line"><span class="built_in">UIImage</span> *image2 = [<span class="built_in">UIImage</span> imageWithContentsOfFile:[[<span class="built_in">NSBundle</span> mainBundle] pathForResource:<span class="string">@"image.png"</span> ofType:<span class="literal">nil</span>]];</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>如果加载一张很大的图片，并且只使用一次，那么就不需要缓存这个图片。这种情况imageWithContentsOfFile比较合适,系统不会浪费内存来缓存图片。然而，如果在程序中经常需要重用的图片，那么最好是选择imageNamed方法。这种方法可以节省出每次都从磁盘加载图片的时间。</p>
+<h2 id="Ios圆角图片的优化"><a href="#Ios圆角图片的优化" class="headerlink" title="Ios圆角图片的优化"></a>Ios圆角图片的优化</h2><ul>
+<li><p>原理<br>上面拖慢帧率的原因其实都是Off-Screen Rendering（离屏渲染）的原因。离屏渲染是个好东西，但是频繁发生离屏渲染是非常耗时的。</p>
+</li>
+<li><p>Off-Screen Rendering<br>离屏渲染，指的是GPU在当前屏幕缓冲区以外新开辟一个缓冲区进行渲染操作。由上面的一个结论视图和圆角的大小对帧率并没有什么卵影响，数量才是伤害的核心输出啊。可以知道离屏渲染耗时是发生在离屏这个动作上面，而不是渲染。为什么离屏这么耗时？原因主要有创建缓冲区和上下文切换。创建新的缓冲区代价都不算大，付出最大代价的是上下文切换。</p>
+</li>
+<li><p>上下文切换<br>上下文切换，不管是在GPU渲染过程中，还是一直所熟悉的进程切换，上下文切换在哪里都是一个相当耗时的操作。首先我要保存当前屏幕渲染环境，然后切换到一个新的绘制环境，申请绘制资源，初始化环境，然后开始一个绘制，绘制完毕后销毁这个绘制环境，如需要切换到On-Screen<br>Rendering或者再开始一个新的离屏渲染重复之前的操作。 下图描述了一次mask的渲染操作。</p>
+</li>
+</ul>
+<p>一次mask发生了两次离屏渲染和一次主屏渲染。即使忽略昂贵的上下文切换，一次mask需要渲染三次才能在屏幕上显示，这已经是普通视图显示3陪耗时，若再加上下文环境切换，一次mask就是普通渲染的30倍以上耗时操作。问我这个30倍以上这个数据怎么的出来的？当我在cell的UIImageView的实例增加到150个，并去掉圆角的时候，帧数才跌至28帧每秒。虽然不是甚准确，但至少反映mask这个耗时是无mask操作的耗时的数十倍的。</p>
+<h3 id="第一种-设置CALayer的cornerRadius"><a href="#第一种-设置CALayer的cornerRadius" class="headerlink" title="第一种:设置CALayer的cornerRadius"></a>第一种:设置CALayer的cornerRadius</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">imageView.image = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"img"</span>];</div><div class="line">imageView.image.layer.cornerRadius = <span class="number">5</span>;</div><div class="line">imageView.image.layer.masksToBounds = <span class="literal">YES</span>;</div></pre></td></tr></table></figure>
+<p>这样设置会触发离屏渲染，比较消耗性能。比如当一个页面上有十几头像这样设置了圆角会明显感觉到卡顿。这种就是最常用的，也是最耗性能的。</p>
+<p>注意：ios9.0之后对UIImageView的圆角设置做了优化，UIImageView这样设置圆角不会触发离屏渲染，ios9.0之前还是会触发离屏渲染。而UIButton还是都会触发离屏渲染。</p>
+<h3 id="第二种"><a href="#第二种" class="headerlink" title="第二种"></a>第二种</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">imageView.clipsToBounds = <span class="literal">YES</span>;</div><div class="line">imageView.layer setCornerRadius:<span class="number">50</span>];</div><div class="line">imageView.layer.shouldRasterize = <span class="literal">YES</span>;</div></pre></td></tr></table></figure>
+<p>shouldRasterize=YES设置光栅化，可以使离屏渲染的结果缓存到内存中存为位图， 使用的时候直接使用缓存，节省了一直离屏渲染损耗的性能。但是如果layer及sublayers常常改变的话，它就会一直不停的渲染及删除缓存重新 创建缓存，所以这种情况下建议不要使用光栅化，这样也是比较损耗性能的。</p>
+<h3 id="第三种-通过Core-Graphics重新绘制带圆角的视图"><a href="#第三种-通过Core-Graphics重新绘制带圆角的视图" class="headerlink" title="第三种 :通过Core Graphics重新绘制带圆角的视图"></a>第三种 :通过Core Graphics重新绘制带圆角的视图</h3><p>这种方式性能最好，但是UIButton上不知道怎么绘制，可以用UIimageView添加个 点击手势当做UIButton使用</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">UIImage</span> (<span class="title">CircleImage</span>)</span></div><div class="line"></div><div class="line">- (<span class="built_in">UIImage</span> *)drawCircleImage &#123;</div><div class="line">    <span class="built_in">UIGraphicsBeginImageContextWithOptions</span>(<span class="keyword">self</span>.bounds.size, <span class="literal">NO</span>, [<span class="built_in">UIScreen</span> mainScreen].scale); </div><div class="line">    [[<span class="built_in">UIBezierPath</span> bezierPathWithRoundedRect:<span class="keyword">self</span>.bounds cornerRadius:<span class="number">50</span>] addClip]; </div><div class="line">    [<span class="keyword">self</span> drawInRect:<span class="keyword">self</span>.bounds]; </div><div class="line">    <span class="built_in">UIImage</span> *output = <span class="built_in">UIGraphicsGetImageFromCurrentImageContext</span>();</div><div class="line">    <span class="built_in">UIGraphicsEndImageContext</span>();</div><div class="line">    <span class="keyword">return</span> output; </div><div class="line">&#125;</div><div class="line"><span class="keyword">@end</span></div><div class="line"><span class="comment">//在需要圆角时调用如下</span></div><div class="line"><span class="built_in">dispatch_async</span>(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>), ^&#123;</div><div class="line">    <span class="built_in">UIImage</span> *img = [[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"image.png"</span>] drawCircleImage];</div><div class="line">    <span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^&#123;</div><div class="line">        imageView.image = img;</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="四、通过混合图层"><a href="#四、通过混合图层" class="headerlink" title="四、通过混合图层"></a>四、通过混合图层</h3><p>此方法就是在要添加圆角的视图上再叠加一个部分透明的视图，只对圆角部分进行遮挡。图层混合的透明度处理方式与mask正好相反。此方法虽然是最优解，没有离屏渲染，没有额外的CPU计算，但是应用范围有限。</p>
+<ul>
+<li>总结</li>
+</ul>
+<p>在可以使用混合图层遮挡的场景下，优先使用第四种方法。即使是非iOS9以上系统，第一种方法在综合性能上依然强于后两者，iOS9以上由于没有了离屏渲染更是首选。方法三由于需要大量计算和增加部分内存，需要实际情况各自取舍。</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Ios的UITableView优化]]></title>
       <url>http://yoursite.com/2015/12/30/UITabView%E7%9A%84%E4%BC%98%E5%8C%96/</url>
       <content type="html"><![CDATA[<h2 id="IOS之UITableView优化-可重用机制"><a href="#IOS之UITableView优化-可重用机制" class="headerlink" title="IOS之UITableView优化-可重用机制"></a>IOS之UITableView优化-可重用机制</h2><p>目的：为了做到显示和数据分离， 通过重用单元格来达到节省内存的目的</p>
@@ -861,53 +1086,58 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Ios图片缓存的优化]]></title>
-      <url>http://yoursite.com/2015/12/30/%E5%9B%BE%E7%89%87%E7%BC%93%E5%AD%98%E7%9A%84%E4%BC%98%E5%8C%96/</url>
-      <content type="html"><![CDATA[<h2 id="图片缓存的优化"><a href="#图片缓存的优化" class="headerlink" title="图片缓存的优化"></a>图片缓存的优化</h2><h4 id="一：从图片入手"><a href="#一：从图片入手" class="headerlink" title="一：从图片入手"></a>一：从图片入手</h4><p>内存占用大原因是图片太大，所以想到对图片进行压缩。找了好多压缩工具，最后发现一款比较好用的，名字是ppDuck（pp鸭），这里是<a href="http://ppduck.com/" target="_blank" rel="external">下载地址</a>,图片压缩后，内存确实是暂用较少了，但还没有根本结局。</p>
-<h4 id="二：从加载图片的方式考虑"><a href="#二：从加载图片的方式考虑" class="headerlink" title="二：从加载图片的方式考虑"></a>二：从加载图片的方式考虑</h4><p>正确选择图片加载方式能够对内存优化起到很大的作用，常见的图片加载方式有下面三种：</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//方法1  </span></div><div class="line"><span class="built_in">UIImage</span> *imag1 = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"image.png"</span>];  </div><div class="line"><span class="comment">//方法2  </span></div><div class="line"><span class="built_in">UIImage</span> *image2 = [<span class="built_in">UIImage</span> imageWithContentsOfFile:[[<span class="built_in">NSBundle</span> mainBundle] pathForResource:<span class="string">@"image@2x"</span> ofType:.png]];  </div><div class="line"><span class="comment">//方法3  </span></div><div class="line"><span class="built_in">NSData</span> *imageData = [<span class="built_in">NSData</span> dataWithContentsOfFile:[[<span class="built_in">NSBundle</span> mainBundle] pathForResource:<span class="string">@"image@2x"</span> ofType:png]];  </div><div class="line"><span class="built_in">UIImage</span> *image3 = [<span class="built_in">UIImage</span> imageWithData:imageData]；</div></pre></td></tr></table></figure>
-<ul>
-<li>第一种方法:imageNamed:<br>为什么有两种方法完成同样的事情呢？imageNamed的优点在于可以缓存已经加载的图片。苹果的文档中有如下说法：这种方法会首先在系统缓存中根据指定的名字寻找图片，如果找到了就返回。如果没有在缓存中找到图片，该方法会从指定的文件中加载图片数据，并将其缓存起来，然后再把结果返回。对于同一个图像，系统只会把它Cache到内存一次，这对于图像的重复利用是非常有优势的。例如：你需要在 一个TableView里重复加载同样一个图标，那么用imageNamed加载图像，系统会把那个图标Cache到内存，在Table里每次利用那个图 像的时候，只会把图片指针指向同一块内存。这种情况使用imageNamed加载图像就会变得非常有效。</li>
-</ul>
-<ul>
-<li><p>第二种方法和第三种方法本质是一样的:imageWithContentsOfFile:和imageWithData:<br>而imageWithContentsOfFile方法只是简单的加载图片，并不会将图片缓存起来，图像会被系统以数据方式加载到程序。当你不需要重用该图像，或者你需要将</p>
-</li>
-<li><p>如何选择</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//方法1 cach  </span></div><div class="line"><span class="built_in">UIImage</span> *imag1 = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"image.png"</span>];  </div><div class="line"><span class="comment">//方法2 no cach  </span></div><div class="line"><span class="built_in">UIImage</span> *image2 = [<span class="built_in">UIImage</span> imageWithContentsOfFile:[[<span class="built_in">NSBundle</span> mainBundle] pathForResource:<span class="string">@"image.png"</span> ofType:<span class="literal">nil</span>]];</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>如果加载一张很大的图片，并且只使用一次，那么就不需要缓存这个图片。这种情况imageWithContentsOfFile比较合适,系统不会浪费内存来缓存图片。然而，如果在程序中经常需要重用的图片，那么最好是选择imageNamed方法。这种方法可以节省出每次都从磁盘加载图片的时间。</p>
-<h2 id="Ios圆角图片的优化"><a href="#Ios圆角图片的优化" class="headerlink" title="Ios圆角图片的优化"></a>Ios圆角图片的优化</h2><ul>
-<li><p>原理<br>上面拖慢帧率的原因其实都是Off-Screen Rendering（离屏渲染）的原因。离屏渲染是个好东西，但是频繁发生离屏渲染是非常耗时的。</p>
-</li>
-<li><p>Off-Screen Rendering<br>离屏渲染，指的是GPU在当前屏幕缓冲区以外新开辟一个缓冲区进行渲染操作。由上面的一个结论视图和圆角的大小对帧率并没有什么卵影响，数量才是伤害的核心输出啊。可以知道离屏渲染耗时是发生在离屏这个动作上面，而不是渲染。为什么离屏这么耗时？原因主要有创建缓冲区和上下文切换。创建新的缓冲区代价都不算大，付出最大代价的是上下文切换。</p>
-</li>
-<li><p>上下文切换<br>上下文切换，不管是在GPU渲染过程中，还是一直所熟悉的进程切换，上下文切换在哪里都是一个相当耗时的操作。首先我要保存当前屏幕渲染环境，然后切换到一个新的绘制环境，申请绘制资源，初始化环境，然后开始一个绘制，绘制完毕后销毁这个绘制环境，如需要切换到On-Screen<br>Rendering或者再开始一个新的离屏渲染重复之前的操作。 下图描述了一次mask的渲染操作。</p>
-</li>
-</ul>
-<p>一次mask发生了两次离屏渲染和一次主屏渲染。即使忽略昂贵的上下文切换，一次mask需要渲染三次才能在屏幕上显示，这已经是普通视图显示3陪耗时，若再加上下文环境切换，一次mask就是普通渲染的30倍以上耗时操作。问我这个30倍以上这个数据怎么的出来的？当我在cell的UIImageView的实例增加到150个，并去掉圆角的时候，帧数才跌至28帧每秒。虽然不是甚准确，但至少反映mask这个耗时是无mask操作的耗时的数十倍的。</p>
-<h3 id="第一种-设置CALayer的cornerRadius"><a href="#第一种-设置CALayer的cornerRadius" class="headerlink" title="第一种:设置CALayer的cornerRadius"></a>第一种:设置CALayer的cornerRadius</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">imageView.image = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"img"</span>];</div><div class="line">imageView.image.layer.cornerRadius = <span class="number">5</span>;</div><div class="line">imageView.image.layer.masksToBounds = <span class="literal">YES</span>;</div></pre></td></tr></table></figure>
-<p>这样设置会触发离屏渲染，比较消耗性能。比如当一个页面上有十几头像这样设置了圆角会明显感觉到卡顿。这种就是最常用的，也是最耗性能的。</p>
-<p>注意：ios9.0之后对UIImageView的圆角设置做了优化，UIImageView这样设置圆角不会触发离屏渲染，ios9.0之前还是会触发离屏渲染。而UIButton还是都会触发离屏渲染。</p>
-<h3 id="第二种"><a href="#第二种" class="headerlink" title="第二种"></a>第二种</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">imageView.clipsToBounds = <span class="literal">YES</span>;</div><div class="line">imageView.layer setCornerRadius:<span class="number">50</span>];</div><div class="line">imageView.layer.shouldRasterize = <span class="literal">YES</span>;</div></pre></td></tr></table></figure>
-<p>shouldRasterize=YES设置光栅化，可以使离屏渲染的结果缓存到内存中存为位图， 使用的时候直接使用缓存，节省了一直离屏渲染损耗的性能。但是如果layer及sublayers常常改变的话，它就会一直不停的渲染及删除缓存重新 创建缓存，所以这种情况下建议不要使用光栅化，这样也是比较损耗性能的。</p>
-<h3 id="第三种-通过Core-Graphics重新绘制带圆角的视图"><a href="#第三种-通过Core-Graphics重新绘制带圆角的视图" class="headerlink" title="第三种 :通过Core Graphics重新绘制带圆角的视图"></a>第三种 :通过Core Graphics重新绘制带圆角的视图</h3><p>这种方式性能最好，但是UIButton上不知道怎么绘制，可以用UIimageView添加个 点击手势当做UIButton使用</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">UIImage</span> (<span class="title">CircleImage</span>)</span></div><div class="line"></div><div class="line">- (<span class="built_in">UIImage</span> *)drawCircleImage &#123;</div><div class="line">    <span class="built_in">UIGraphicsBeginImageContextWithOptions</span>(<span class="keyword">self</span>.bounds.size, <span class="literal">NO</span>, [<span class="built_in">UIScreen</span> mainScreen].scale); </div><div class="line">    [[<span class="built_in">UIBezierPath</span> bezierPathWithRoundedRect:<span class="keyword">self</span>.bounds cornerRadius:<span class="number">50</span>] addClip]; </div><div class="line">    [<span class="keyword">self</span> drawInRect:<span class="keyword">self</span>.bounds]; </div><div class="line">    <span class="built_in">UIImage</span> *output = <span class="built_in">UIGraphicsGetImageFromCurrentImageContext</span>();</div><div class="line">    <span class="built_in">UIGraphicsEndImageContext</span>();</div><div class="line">    <span class="keyword">return</span> output; </div><div class="line">&#125;</div><div class="line"><span class="keyword">@end</span></div><div class="line"><span class="comment">//在需要圆角时调用如下</span></div><div class="line"><span class="built_in">dispatch_async</span>(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>), ^&#123;</div><div class="line">    <span class="built_in">UIImage</span> *img = [[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"image.png"</span>] drawCircleImage];</div><div class="line">    <span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^&#123;</div><div class="line">        imageView.image = img;</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h3 id="四、通过混合图层"><a href="#四、通过混合图层" class="headerlink" title="四、通过混合图层"></a>四、通过混合图层</h3><p>此方法就是在要添加圆角的视图上再叠加一个部分透明的视图，只对圆角部分进行遮挡。图层混合的透明度处理方式与mask正好相反。此方法虽然是最优解，没有离屏渲染，没有额外的CPU计算，但是应用范围有限。</p>
-<ul>
-<li>总结</li>
-</ul>
-<p>在可以使用混合图层遮挡的场景下，优先使用第四种方法。即使是非iOS9以上系统，第一种方法在综合性能上依然强于后两者，iOS9以上由于没有了离屏渲染更是首选。方法三由于需要大量计算和增加部分内存，需要实际情况各自取舍。</p>
-]]></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[Ios高精度NSDecimalNumber]]></title>
       <url>http://yoursite.com/2015/12/20/Ios%E7%B2%BE%E5%BA%A6/</url>
       <content type="html"><![CDATA[<p>NSDecimalNumber Ios精度计算</p>
 <p>.m文件<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Iimport &lt;Foundation/Foundation.h&gt;</div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">HighPrecision</span> : <span class="title">NSObject</span> </span></div><div class="line">+ (<span class="built_in">NSString</span> *)plusWithA:(<span class="built_in">NSString</span> *)A andB:(<span class="built_in">NSString</span> *)B; <span class="comment">// 加法</span></div><div class="line">+ (<span class="built_in">NSString</span> *)minuWithA:(<span class="built_in">NSString</span> *)A andB:(<span class="built_in">NSString</span> *)B; <span class="comment">// 减法</span></div><div class="line">+ (<span class="built_in">NSString</span> *)multiplyWithA:(<span class="built_in">NSString</span> *)A andB:(<span class="built_in">NSString</span> *)B; <span class="comment">// 乘法</span></div><div class="line">+ (<span class="built_in">NSString</span> *)devideWithA:(<span class="built_in">NSString</span> *)A andB:(<span class="built_in">NSString</span> *)B; <span class="comment">// 除法</span></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure></p>
 <p>.h文件<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">HighPrecision</span></span></div><div class="line">+ (<span class="built_in">NSString</span> *)plusWithA:(<span class="built_in">NSString</span> *)A andB:(<span class="built_in">NSString</span> *)B</div><div class="line">&#123;</div><div class="line">    <span class="built_in">NSDecimalNumber</span> *a = [<span class="built_in">NSDecimalNumber</span> decimalNumberWithString:A];</div><div class="line">    <span class="built_in">NSDecimalNumber</span> *b = [<span class="built_in">NSDecimalNumber</span> decimalNumberWithString:B];</div><div class="line">    <span class="built_in">NSDecimalNumber</span> *h = [a decimalNumberByAdding: b withBehavior:[<span class="keyword">self</span> format]];</div><div class="line">    <span class="built_in">NSString</span> *result = [h stringValue];</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div><div class="line">+ (<span class="built_in">NSString</span> *)minuWithA:(<span class="built_in">NSString</span> *)A andB:(<span class="built_in">NSString</span> *)B</div><div class="line">&#123;</div><div class="line"> 	<span class="built_in">NSDecimalNumber</span> *a = [<span class="built_in">NSDecimalNumber</span> decimalNumberWithString:A];</div><div class="line"> 	<span class="built_in">NSDecimalNumber</span> *c = [a decimalNumberBySubtracting:b withBehavior:[<span class="keyword">self</span> format]];</div><div class="line"> 	<span class="built_in">NSString</span> *result = [c stringValue];</div><div class="line"> 	<span class="keyword">return</span> result;</div><div class="line">&#125;</div><div class="line">+ (<span class="built_in">NSString</span> *)multiplyWithA:(<span class="built_in">NSString</span> *)A andB:(<span class="built_in">NSString</span> *)B</div><div class="line">&#123;</div><div class="line">   <span class="built_in">NSDecimalNumber</span> *a = [<span class="built_in">NSDecimalNumber</span> decimalNumberWithString:A];</div><div class="line">   <span class="built_in">NSDecimalNumber</span> *b = [<span class="built_in">NSDecimalNumber</span> decimalNumberWithString:B];</div><div class="line">   <span class="built_in">NSDecimalNumber</span> *j = [a decimalNumberByMultiplyingBy:b withBehavior:[<span class="keyword">self</span> format]];</div><div class="line">   <span class="built_in">NSString</span> *result = [j stringValue];</div><div class="line">   <span class="keyword">return</span> result;</div><div class="line">&#125;</div><div class="line">+ (<span class="built_in">NSString</span> *)devideWithA:(<span class="built_in">NSString</span> *)A andB:(<span class="built_in">NSString</span> *)B</div><div class="line">&#123;</div><div class="line">    <span class="built_in">NSDecimalNumber</span> *a = [<span class="built_in">NSDecimalNumber</span> decimalNumberWithString:A];</div><div class="line">    <span class="built_in">NSDecimalNumber</span> *b = [<span class="built_in">NSDecimalNumber</span> decimalNumberWithString:B];</div><div class="line">    <span class="built_in">NSDecimalNumber</span> *s = [a decimalNumberByDividingBy:b withBehavior:[<span class="keyword">self</span> format]];</div><div class="line">    <span class="built_in">NSString</span> *result = [s stringValue];</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div><div class="line">+ (<span class="built_in">NSDecimalNumberHandler</span> *)format</div><div class="line">&#123;</div><div class="line">   <span class="comment">// NSRoundPlain 貌似取整</span></div><div class="line">   <span class="comment">// NSRoundDown 只舍不入</span></div><div class="line">   <span class="comment">// NSRoundUp 只入不舍</span></div><div class="line">   <span class="comment">// NSRoundBankers 貌似四舍五入</span></div><div class="line">    </div><div class="line">   <span class="built_in">NSDecimalNumberHandler</span> *roundUp = [<span class="built_in">NSDecimalNumberHandler</span></div><div class="line">        decimalNumberHandlerWithRoundingMode:<span class="built_in">NSRoundBankers</span></div><div class="line">                                       scale:<span class="number">2</span></div><div class="line">                                       raiseOnExactness:<span class="literal">NO</span></div><div class="line">                                       raiseOnOverflow:<span class="literal">NO</span></div><div class="line">                                       raiseOnUnderflow:<span class="literal">NO</span></div><div class="line">                                       raiseOnDivideByZero:<span class="literal">YES</span>];</div><div class="line">    <span class="keyword">return</span> roundUp;</div><div class="line">&#125;</div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure></p>
 ]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[IosQuestions]]></title>
+      <url>http://yoursite.com/2015/12/20/IosQuestions/</url>
+      <content type="html"><![CDATA[<h3 id="面试题积累"><a href="#面试题积累" class="headerlink" title="面试题积累"></a>面试题积累</h3><p>(<a href="http://www.cocoachina.com/ios/20160323/15770.html" target="_blank" rel="external">http://www.cocoachina.com/ios/20160323/15770.html</a>)<br>(<a href="http://blog.csdn.net/chenyufeng1991/article/details/53472284" target="_blank" rel="external">http://blog.csdn.net/chenyufeng1991/article/details/53472284</a>)<br>(<a href="http://blog.csdn.net/q469587851/article/details/50591904?locationNum=13" target="_blank" rel="external">http://blog.csdn.net/q469587851/article/details/50591904?locationNum=13</a>)<br>(<a href="http://www.cocoachina.com/ios/20150825/13195.html" target="_blank" rel="external">http://www.cocoachina.com/ios/20150825/13195.html</a>)<br>(<a href="http://www.cocoachina.com/programmer/20151019/13746.html" target="_blank" rel="external">http://www.cocoachina.com/programmer/20151019/13746.html</a>)<br>(<a href="http://www.mamicode.com/info-detail-988919.html" target="_blank" rel="external">http://www.mamicode.com/info-detail-988919.html</a>)<br>(<a href="https://sanwen8.cn/p/1d4ih4t.html" target="_blank" rel="external">https://sanwen8.cn/p/1d4ih4t.html</a>)<br>(<a href="https://github.com/ChenYilong/iOSInterviewQuestions/" target="_blank" rel="external">https://github.com/ChenYilong/iOSInterviewQuestions/</a>)<br>(<a href="http://www.jianshu.com/p/b61cd0bc2abe" target="_blank" rel="external">http://www.jianshu.com/p/b61cd0bc2abe</a>)<br>(<a href="https://chenhu1001.github.io/page/2/" target="_blank" rel="external">https://chenhu1001.github.io/page/2/</a>)</p>
+<h2 id="搜狐快站"><a href="#搜狐快站" class="headerlink" title="搜狐快站"></a>搜狐快站</h2><h3 id="倒计时如何实现-（NSTimer，还有其他的实现方式吗"><a href="#倒计时如何实现-（NSTimer，还有其他的实现方式吗" class="headerlink" title="倒计时如何实现?（NSTimer，还有其他的实现方式吗)?"></a>倒计时如何实现?（NSTimer，还有其他的实现方式吗)?</h3><h4 id="创建方式1"><a href="#创建方式1" class="headerlink" title="创建方式1"></a>创建方式1</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSTimer</span> *timer = [<span class="built_in">NSTimer</span> scheduledTimerWithTimeInteral:<span class="number">1.0</span> target:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(action:) userInfo:ni] repeat:<span class="literal">NO</span>];</div></pre></td></tr></table></figure>
+<ul>
+<li><p>参数<br>TimerIntval:执行之前等待的时间.比如设置成1.0 就代表1秒后执行;<br>target:需要执行方法的对象;<br>selector:需要执行的方法;<br>repeats:是否需要循环;</p>
+</li>
+<li><p>释放</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[timer invalidate];</div></pre></td></tr></table></figure>
+</li>
+<li><p>注意<br>调用创建方法后,target对象的引用计数会+1,直到执行完毕,自动-1.如果循环执行的话必须手动关闭.否则可以不执行释放方法;</p>
+</li>
+<li><p>特性<br>1.存在延迟:不管是一次性还是周期性的timer的实际触发事件的时间,都会与所加入的RunLoop和RunLoopMode有关.如果RunLoop正在执行一个连续的运算,timer就会被延迟触发.重复性的timer遇到这种情况,如果延迟超过一个周期,则会和后面的触发进行合并，即在一个周期内只会触发一次。但是不管该timer的触发时间延迟的有多离谱，他后面的timer的触发时间总是倍数于第一次添加timer的间隙。<br>2.必须加入RunLoop::使用上面的创建方式,会自动把timer加入MainRunloop的NSDefaultRunLoopMode中.如果使用以下方式创建定时器,就必须手动加入Runloop:</p>
+</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSTimer</span> *timer = [<span class="built_in">NSTimer</span> timerWithTimeInterval:<span class="number">5</span> target:<span class="keyword">self</span> seletor:<span class="keyword">@selector</span>(timerAction) userInfo:<span class="literal">nil</span> repeats:<span class="literal">YES</span>];</div><div class="line">[[<span class="built_in">NSRunloop</span> mainRunloop] addTimer:timer forMode:<span class="built_in">NSDefaultRunloopMode</span>];</div></pre></td></tr></table></figure>
+<h4 id="创建方式2-CADisplayLink"><a href="#创建方式2-CADisplayLink" class="headerlink" title="创建方式2(CADisplayLink)"></a>创建方式2(CADisplayLink)</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">self</span>.displayLink = [<span class="built_in">CADisplayLink</span> displayLinkWithTarget:<span class="keyword">self</span> sel:ector:<span class="keyword">@selector</span>(handleDisplaylink:)];</div><div class="line">[<span class="keyword">self</span>.displayLink addToRunLoop:[<span class="built_in">NSRunLoop</span> curentRunLoop] forMode:<span class="built_in">NSDefaultRunLoopMode</span>];</div></pre></td></tr></table></figure>
+<ul>
+<li><p>释放</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[<span class="keyword">self</span>.displayLink invailidate];</div><div class="line"><span class="keyword">self</span>.displayLink = <span class="literal">nil</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p>注意<br>当把CADisplayLink对象add到runloop中后，selector就能被周期性调用，类似于重复的NSTimer被启动了；执行invalidate操作时,CADisplayLink对象就会从runloop中移除，selector调用也随即停止，类似于NSTimer的invalidate方法。</p>
+</li>
+<li><p>特性<br>1.屏幕刷新时调用:CADisplayLink是一个能让我们以和屏幕刷新率同步的频率将特定的内容画到屏幕上的定时器类。CADisplayLink以特定模式注册到runloop后，每当屏幕显示内容刷新结束的时候，runloop就会向CADisplayLink指定的target发送一次指定的selector消息， CADisplayLink类对应的selector就会被调用一次。所以通常情况下，按照iOS设备屏幕的刷新率60次/秒。<br>2.延迟:OS设备的屏幕刷新频率是固定的，CADisplayLink在正常情况下会在每次刷新结束都被调用，精确度相当高。但如果调用的方法比较耗时，超过了屏幕刷新周期，就会导致跳过若干次回调调用机会。如果CPU过于繁忙，无法保证屏幕60次/秒的刷新率，就会导致跳过若干次调用回调方法的机会，跳过次数取决CPU的忙碌程度。</p>
+</li>
+<li><p>使用场景<br>从原理上可以看出，CADisplayLink适合做界面的不停重绘，比如视频播放的时候需要不停地获取下一帧用于界面渲染。</p>
+</li>
+<li><p>重要的属性<br>1.NSInteger类型的值，用来设置间隔多少帧调用一次selector方法，默认值是1，即每帧都调用一次。<br>2.readOnly的CFTimeInterval值，表示两次屏幕刷新之间的时间间隔。需要注意的是，该属性在target的selector被首次调用以后才会被赋值。selector的调用间隔时间计算方式是：调用间隔时间 = duration × frameInterval。</p>
+</li>
+</ul>
+<h4 id="创建方式3-GCD"><a href="#创建方式3-GCD" class="headerlink" title="创建方式3(GCD)"></a>创建方式3(GCD)</h4><ul>
+<li>GCD定时器不受RunLoop约束，比NSTimer更加准时.</li>
+</ul>
+<h5 id="执行一次的操作"><a href="#执行一次的操作" class="headerlink" title="执行一次的操作"></a>执行一次的操作</h5><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">double</span> delayInSeconds = <span class="number">2.0</span>;</div><div class="line">dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * <span class="built_in">NSEC_PER_SEC</span>);</div><div class="line">dispatch_after(popTime, dispatch_get_main_queue(), ^(<span class="keyword">void</span>)&#123;</div><div class="line">    <span class="comment">//执行事件</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h5 id="重复执行的操作"><a href="#重复执行的操作" class="headerlink" title="重复执行的操作"></a>重复执行的操作</h5><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//证明，实现GCD定时器</span></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> ()</span></div><div class="line"></div><div class="line"><span class="comment">/** 定时器(这里不用带*，因为dispatch_source_t就是个类，内部已经包含了*) */</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) dispatch_source_t timer;</div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="comment">// 获得队列</span></div><div class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_get_main_queue();</div><div class="line"></div><div class="line"><span class="comment">// 创建一个定时器(dispatch_source_t本质还是个OC对象)</span></div><div class="line"><span class="keyword">self</span>.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, <span class="number">0</span>, <span class="number">0</span>, queue);</div><div class="line"></div><div class="line"><span class="comment">// 设置定时器的各种属性（几时开始任务，每隔多长时间执行一次）</span></div><div class="line"><span class="comment">// GCD的时间参数，一般是纳秒（1秒 == 10的9次方纳秒）</span></div><div class="line"><span class="comment">// 何时开始执行第一个任务</span></div><div class="line"><span class="comment">// dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC) 比当前时间晚3秒</span></div><div class="line">dispatch_time_t start = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(<span class="number">1.0</span> * <span class="built_in">NSEC_PER_SEC</span>));</div><div class="line">uint64_t interval = (uint64_t)(<span class="number">1.0</span> * <span class="built_in">NSEC_PER_SEC</span>);</div><div class="line">dispatch_source_set_timer(<span class="keyword">self</span>.timer, start, interval, <span class="number">0</span>);</div><div class="line"></div><div class="line"><span class="comment">// 设置回调</span></div><div class="line">dispatch_source_set_event_handler(<span class="keyword">self</span>.timer, ^&#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"------------%@"</span>, [<span class="built_in">NSThread</span> currentThread]);</div><div class="line">    count++;</div><div class="line">    <span class="keyword">if</span> (count == <span class="number">4</span>) &#123;</div><div class="line">        <span class="comment">// 取消定时器</span></div><div class="line">        dispatch_cancel(<span class="keyword">self</span>.timer);</div><div class="line">        <span class="keyword">self</span>.timer = <span class="literal">nil</span>;</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 启动定时器</span></div><div class="line">dispatch_resume(<span class="keyword">self</span>.timer);</div></pre></td></tr></table></figure>
+<p><a href="https://my.oschina.net/u/2340880/blog/398598" target="_blank" rel="external">其他创建定时器需要需要注意的地方</a></p>
+<h3 id="UIButton的继承关系？"><a href="#UIButton的继承关系？" class="headerlink" title="UIButton的继承关系？"></a>UIButton的继承关系？</h3><p>UIButton继承与UIControl继承与UIView继承与UIResponder继承与NSObject。</p>
+<h4 id="Ios中可以进行输入的控件-UITextView-UITextField）？"><a href="#Ios中可以进行输入的控件-UITextView-UITextField）？" class="headerlink" title="Ios中可以进行输入的控件(UITextView,UITextField）？"></a>Ios中可以进行输入的控件(UITextView,UITextField）？</h4><ul>
+<li>继承关系<br>UITextField继承自UIView，UITextView继承自UIScrollView。</li>
+<li>文本行数<br>UITextView支持多行输入，可以滑屏垂直滚动，UITextField仅支持单行输入。</li>
+<li>Placeholder<br>UITextField支持设置Placeholder属性，即在用户输入文本前显示提示性的内容，而UITextView则没有这个功能。</li>
+</ul>
+<h4 id="4-快排的实现原理"><a href="#4-快排的实现原理" class="headerlink" title="4.快排的实现原理?"></a>4.快排的实现原理?</h4><h4 id="5-短信验证码会有倒计时功能吗-第一次验证失败后还可以再进行验证吗？"><a href="#5-短信验证码会有倒计时功能吗-第一次验证失败后还可以再进行验证吗？" class="headerlink" title="5.短信验证码会有倒计时功能吗?第一次验证失败后还可以再进行验证吗？"></a>5.短信验证码会有倒计时功能吗?第一次验证失败后还可以再进行验证吗？</h4><h4 id="6-Android开发和iOS开发的区别"><a href="#6-Android开发和iOS开发的区别" class="headerlink" title="6.Android开发和iOS开发的区别?"></a>6.Android开发和iOS开发的区别?</h4>]]></content>
     </entry>
     
     <entry>
@@ -969,52 +1199,6 @@
 <h3 id="UIKit的迁移"><a href="#UIKit的迁移" class="headerlink" title="UIKit的迁移"></a>UIKit的迁移</h3><p>图片下载已经被重构，以遵循AlamofireImage架构与新的AFImageDownloader类。这个类的图片下载职责的代理人是UIButton与UIImageView的类目，并且提供了一些方法，在必要时可以自定义。类别中，下载远程图片的实际方法没有改变。UIWebView的类目被重构为使用AFHTTPSessionManager作为其网络请求。</p>
 <h3 id="UIAlertView的类目被废弃"><a href="#UIAlertView的类目被废弃" class="headerlink" title="UIAlertView的类目被废弃"></a>UIAlertView的类目被废弃</h3><p>从AFNetworking 3.0后UIAlertView的类目因过时而被废弃。并没有提供UIAlertController类目的计划，因为这是应用程序应处理的逻辑，而不是这个库。</p>
 ]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[IosQuestions]]></title>
-      <url>http://yoursite.com/2015/12/20/IosQuestions/</url>
-      <content type="html"><![CDATA[<h3 id="面试题积累"><a href="#面试题积累" class="headerlink" title="面试题积累"></a>面试题积累</h3><p>(<a href="http://www.cocoachina.com/ios/20160323/15770.html" target="_blank" rel="external">http://www.cocoachina.com/ios/20160323/15770.html</a>)<br>(<a href="http://blog.csdn.net/chenyufeng1991/article/details/53472284" target="_blank" rel="external">http://blog.csdn.net/chenyufeng1991/article/details/53472284</a>)<br>(<a href="http://blog.csdn.net/q469587851/article/details/50591904?locationNum=13" target="_blank" rel="external">http://blog.csdn.net/q469587851/article/details/50591904?locationNum=13</a>)<br>(<a href="http://www.cocoachina.com/ios/20150825/13195.html" target="_blank" rel="external">http://www.cocoachina.com/ios/20150825/13195.html</a>)<br>(<a href="http://www.cocoachina.com/programmer/20151019/13746.html" target="_blank" rel="external">http://www.cocoachina.com/programmer/20151019/13746.html</a>)<br>(<a href="http://www.mamicode.com/info-detail-988919.html" target="_blank" rel="external">http://www.mamicode.com/info-detail-988919.html</a>)<br>(<a href="https://sanwen8.cn/p/1d4ih4t.html" target="_blank" rel="external">https://sanwen8.cn/p/1d4ih4t.html</a>)<br>(<a href="https://github.com/ChenYilong/iOSInterviewQuestions/" target="_blank" rel="external">https://github.com/ChenYilong/iOSInterviewQuestions/</a>)</p>
-<h2 id="搜狐快站"><a href="#搜狐快站" class="headerlink" title="搜狐快站"></a>搜狐快站</h2><h3 id="倒计时如何实现-（NSTimer，还有其他的实现方式吗"><a href="#倒计时如何实现-（NSTimer，还有其他的实现方式吗" class="headerlink" title="倒计时如何实现?（NSTimer，还有其他的实现方式吗)?"></a>倒计时如何实现?（NSTimer，还有其他的实现方式吗)?</h3><h4 id="创建方式1"><a href="#创建方式1" class="headerlink" title="创建方式1"></a>创建方式1</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSTimer</span> *timer = [<span class="built_in">NSTimer</span> scheduledTimerWithTimeInteral:<span class="number">1.0</span> target:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(action:) userInfo:ni] repeat:<span class="literal">NO</span>];</div></pre></td></tr></table></figure>
-<ul>
-<li><p>参数<br>TimerIntval:执行之前等待的时间.比如设置成1.0 就代表1秒后执行;<br>target:需要执行方法的对象;<br>selector:需要执行的方法;<br>repeats:是否需要循环;</p>
-</li>
-<li><p>释放</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[timer invalidate];</div></pre></td></tr></table></figure>
-</li>
-<li><p>注意<br>调用创建方法后,target对象的引用计数会+1,直到执行完毕,自动-1.如果循环执行的话必须手动关闭.否则可以不执行释放方法;</p>
-</li>
-<li><p>特性<br>1.存在延迟:不管是一次性还是周期性的timer的实际触发事件的时间,都会与所加入的RunLoop和RunLoopMode有关.如果RunLoop正在执行一个连续的运算,timer就会被延迟触发.重复性的timer遇到这种情况,如果延迟超过一个周期,则会和后面的触发进行合并，即在一个周期内只会触发一次。但是不管该timer的触发时间延迟的有多离谱，他后面的timer的触发时间总是倍数于第一次添加timer的间隙。<br>2.必须加入RunLoop::使用上面的创建方式,会自动把timer加入MainRunloop的NSDefaultRunLoopMode中.如果使用以下方式创建定时器,就必须手动加入Runloop:</p>
-</li>
-</ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSTimer</span> *timer = [<span class="built_in">NSTimer</span> timerWithTimeInterval:<span class="number">5</span> target:<span class="keyword">self</span> seletor:<span class="keyword">@selector</span>(timerAction) userInfo:<span class="literal">nil</span> repeats:<span class="literal">YES</span>];</div><div class="line">[[<span class="built_in">NSRunloop</span> mainRunloop] addTimer:timer forMode:<span class="built_in">NSDefaultRunloopMode</span>];</div></pre></td></tr></table></figure>
-<h4 id="创建方式2-CADisplayLink"><a href="#创建方式2-CADisplayLink" class="headerlink" title="创建方式2(CADisplayLink)"></a>创建方式2(CADisplayLink)</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">self</span>.displayLink = [<span class="built_in">CADisplayLink</span> displayLinkWithTarget:<span class="keyword">self</span> sel:ector:<span class="keyword">@selector</span>(handleDisplaylink:)];</div><div class="line">[<span class="keyword">self</span>.displayLink addToRunLoop:[<span class="built_in">NSRunLoop</span> curentRunLoop] forMode:<span class="built_in">NSDefaultRunLoopMode</span>];</div></pre></td></tr></table></figure>
-<ul>
-<li><p>释放</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[<span class="keyword">self</span>.displayLink invailidate];</div><div class="line"><span class="keyword">self</span>.displayLink = <span class="literal">nil</span>;</div></pre></td></tr></table></figure>
-</li>
-<li><p>注意<br>当把CADisplayLink对象add到runloop中后，selector就能被周期性调用，类似于重复的NSTimer被启动了；执行invalidate操作时,CADisplayLink对象就会从runloop中移除，selector调用也随即停止，类似于NSTimer的invalidate方法。</p>
-</li>
-<li><p>特性<br>1.屏幕刷新时调用:CADisplayLink是一个能让我们以和屏幕刷新率同步的频率将特定的内容画到屏幕上的定时器类。CADisplayLink以特定模式注册到runloop后，每当屏幕显示内容刷新结束的时候，runloop就会向CADisplayLink指定的target发送一次指定的selector消息， CADisplayLink类对应的selector就会被调用一次。所以通常情况下，按照iOS设备屏幕的刷新率60次/秒。<br>2.延迟:OS设备的屏幕刷新频率是固定的，CADisplayLink在正常情况下会在每次刷新结束都被调用，精确度相当高。但如果调用的方法比较耗时，超过了屏幕刷新周期，就会导致跳过若干次回调调用机会。如果CPU过于繁忙，无法保证屏幕60次/秒的刷新率，就会导致跳过若干次调用回调方法的机会，跳过次数取决CPU的忙碌程度。</p>
-</li>
-<li><p>使用场景<br>从原理上可以看出，CADisplayLink适合做界面的不停重绘，比如视频播放的时候需要不停地获取下一帧用于界面渲染。</p>
-</li>
-<li><p>重要的属性<br>1.NSInteger类型的值，用来设置间隔多少帧调用一次selector方法，默认值是1，即每帧都调用一次。<br>2.readOnly的CFTimeInterval值，表示两次屏幕刷新之间的时间间隔。需要注意的是，该属性在target的selector被首次调用以后才会被赋值。selector的调用间隔时间计算方式是：调用间隔时间 = duration × frameInterval。</p>
-</li>
-</ul>
-<h4 id="创建方式3-GCD"><a href="#创建方式3-GCD" class="headerlink" title="创建方式3(GCD)"></a>创建方式3(GCD)</h4><ul>
-<li>GCD定时器不受RunLoop约束，比NSTimer更加准时.</li>
-</ul>
-<h5 id="执行一次的操作"><a href="#执行一次的操作" class="headerlink" title="执行一次的操作"></a>执行一次的操作</h5><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">double</span> delayInSeconds = <span class="number">2.0</span>;</div><div class="line">dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * <span class="built_in">NSEC_PER_SEC</span>);</div><div class="line">dispatch_after(popTime, dispatch_get_main_queue(), ^(<span class="keyword">void</span>)&#123;</div><div class="line">    <span class="comment">//执行事件</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h5 id="重复执行的操作"><a href="#重复执行的操作" class="headerlink" title="重复执行的操作"></a>重复执行的操作</h5><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//证明，实现GCD定时器</span></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> ()</span></div><div class="line"></div><div class="line"><span class="comment">/** 定时器(这里不用带*，因为dispatch_source_t就是个类，内部已经包含了*) */</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) dispatch_source_t timer;</div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="comment">// 获得队列</span></div><div class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_get_main_queue();</div><div class="line"></div><div class="line"><span class="comment">// 创建一个定时器(dispatch_source_t本质还是个OC对象)</span></div><div class="line"><span class="keyword">self</span>.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, <span class="number">0</span>, <span class="number">0</span>, queue);</div><div class="line"></div><div class="line"><span class="comment">// 设置定时器的各种属性（几时开始任务，每隔多长时间执行一次）</span></div><div class="line"><span class="comment">// GCD的时间参数，一般是纳秒（1秒 == 10的9次方纳秒）</span></div><div class="line"><span class="comment">// 何时开始执行第一个任务</span></div><div class="line"><span class="comment">// dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC) 比当前时间晚3秒</span></div><div class="line">dispatch_time_t start = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(<span class="number">1.0</span> * <span class="built_in">NSEC_PER_SEC</span>));</div><div class="line">uint64_t interval = (uint64_t)(<span class="number">1.0</span> * <span class="built_in">NSEC_PER_SEC</span>);</div><div class="line">dispatch_source_set_timer(<span class="keyword">self</span>.timer, start, interval, <span class="number">0</span>);</div><div class="line"></div><div class="line"><span class="comment">// 设置回调</span></div><div class="line">dispatch_source_set_event_handler(<span class="keyword">self</span>.timer, ^&#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"------------%@"</span>, [<span class="built_in">NSThread</span> currentThread]);</div><div class="line">    count++;</div><div class="line">    <span class="keyword">if</span> (count == <span class="number">4</span>) &#123;</div><div class="line">        <span class="comment">// 取消定时器</span></div><div class="line">        dispatch_cancel(<span class="keyword">self</span>.timer);</div><div class="line">        <span class="keyword">self</span>.timer = <span class="literal">nil</span>;</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 启动定时器</span></div><div class="line">dispatch_resume(<span class="keyword">self</span>.timer);</div></pre></td></tr></table></figure>
-<p><a href="https://my.oschina.net/u/2340880/blog/398598" target="_blank" rel="external">其他创建定时器需要需要注意的地方</a></p>
-<h3 id="UIButton的继承关系？"><a href="#UIButton的继承关系？" class="headerlink" title="UIButton的继承关系？"></a>UIButton的继承关系？</h3><p>UIButton继承与UIControl继承与UIView继承与UIResponder继承与NSObject。</p>
-<h4 id="Ios中可以进行输入的控件-UITextView-UITextField）？"><a href="#Ios中可以进行输入的控件-UITextView-UITextField）？" class="headerlink" title="Ios中可以进行输入的控件(UITextView,UITextField）？"></a>Ios中可以进行输入的控件(UITextView,UITextField）？</h4><ul>
-<li>继承关系<br>UITextField继承自UIView，UITextView继承自UIScrollView。</li>
-<li>文本行数<br>UITextView支持多行输入，可以滑屏垂直滚动，UITextField仅支持单行输入。</li>
-<li>Placeholder<br>UITextField支持设置Placeholder属性，即在用户输入文本前显示提示性的内容，而UITextView则没有这个功能。</li>
-</ul>
-<h4 id="4-快排的实现原理"><a href="#4-快排的实现原理" class="headerlink" title="4.快排的实现原理?"></a>4.快排的实现原理?</h4><h4 id="5-短信验证码会有倒计时功能吗-第一次验证失败后还可以再进行验证吗？"><a href="#5-短信验证码会有倒计时功能吗-第一次验证失败后还可以再进行验证吗？" class="headerlink" title="5.短信验证码会有倒计时功能吗?第一次验证失败后还可以再进行验证吗？"></a>5.短信验证码会有倒计时功能吗?第一次验证失败后还可以再进行验证吗？</h4><h4 id="6-Android开发和iOS开发的区别"><a href="#6-Android开发和iOS开发的区别" class="headerlink" title="6.Android开发和iOS开发的区别?"></a>6.Android开发和iOS开发的区别?</h4>]]></content>
     </entry>
     
   
