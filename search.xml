@@ -418,7 +418,7 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Ios常用的三种种枚举]]></title>
+      <title><![CDATA[常用的三种种枚举]]></title>
       <url>http://yoursite.com/2014/05/21/2014/Enum/</url>
       <content type="html"><![CDATA[<p>Ios中常用的枚举的几种写法</p>
 <p>###1.普通的枚举<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span>&#123;</div><div class="line">    XMtop,</div><div class="line">    XMbottom,</div><div class="line">&#125;XM;</div></pre></td></tr></table></figure></p>
@@ -428,7 +428,7 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Ios关键字const、static、extern]]></title>
+      <title><![CDATA[关键字const、static、extern]]></title>
       <url>http://yoursite.com/2014/05/20/2014/const-static-extern%E7%AE%80%E4%BB%8B/</url>
       <content type="html"><![CDATA[<h3 id="const、static、extern简介"><a href="#const、static、extern简介" class="headerlink" title="const、static、extern简介"></a>const、static、extern简介</h3><h3 id="一、const与宏的区别（面试题）"><a href="#一、const与宏的区别（面试题）" class="headerlink" title="一、const与宏的区别（面试题）:"></a>一、const与宏的区别（面试题）:</h3><ul>
 <li><code>const简介</code>:之前常用的字符串常量，一般是抽成宏，但是苹果不推荐我们抽成宏，推荐我们使用const常量。</li>
