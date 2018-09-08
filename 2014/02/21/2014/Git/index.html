@@ -1,47 +1,20 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><title>版本管理Git - zhuimar</title><meta name="description" content="git是一款开源的分布式版本控制工具,在世界上所有的分布式版本控制工具中，git是最快、最简单、最流行的版本管理工具"><link type="text/css" rel="stylesheet" href="/css/pure.css?v=0.0.1"><link type="text/css" rel="stylesheet" href="/css/style.css?v=0.0.1"><script type="text/javascript" src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script></head></html><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">版本管理Git</h1><a id="logo" href="/.">zhuimar</a></div><div id="nav-menu"><div class="bitcron_nav"><div class="site_nav_wrap"><div class="site_nav"><span class="a_container"><a href="/." class="selected active current">首页</a></span><span class="a_container"><a href="/archives/">归档</a></span><span class="a_container"><a href="/about/">关于</a></span><span class="a_container"><a href="/atom.xml">订阅</a></span></div></div></div></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">版本管理Git</h1><div class="post-meta">2014-02-21<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" type="text/javascript"></script><span class="meta-space">  |  </span><span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span><span> 浏览</span></span></div><!--文章内容--><div class="post-content"><h2 id="GIT简介"><a href="#GIT简介" class="headerlink" title="GIT简介"></a>GIT简介</h2><h4 id="什么是git"><a href="#什么是git" class="headerlink" title="什么是git?"></a>什么是git?</h4><ul>
-<li>git是一款开源的分布式版本控制工具</li>
-<li>在世界上所有的分布式版本控制工具中，git是最快、最简单、最流行的版本管理工具<h4 id="git的起源"><a href="#git的起源" class="headerlink" title="git的起源"></a>git的起源</h4></li>
-<li>作者是Linux之父：Linus Benedict Torvalds</li>
-<li>当初开发git仅仅是为了辅助Linux内核的开发（管理源代码）<h4 id="git的现状"><a href="#git的现状" class="headerlink" title="git的现状"></a>git的现状</h4></li>
-<li>在国外已经非常普及，国内并未普及（在慢慢普及）</li>
-<li>越来越多的开源项目已经转移到git<h3 id="其他版本控制工具"><a href="#其他版本控制工具" class="headerlink" title="其他版本控制工具"></a>其他版本控制工具</h3><h4 id="CVS"><a href="#CVS" class="headerlink" title="CVS"></a>CVS</h4></li>
-<li>最早的开源、免费的集中式版本控制工具</li>
-<li>自身设计有问题，会造成提交文件不完整，版本库莫名其妙损坏的情况</li>
-</ul>
-<h4 id="SVN"><a href="#SVN" class="headerlink" title="SVN"></a>SVN</h4><ul>
-<li>修正了CVS的一些稳定性问题，是目前用得最多的集中式版本库控制工具</li>
-</ul>
-<h4 id="ClearCase"><a href="#ClearCase" class="headerlink" title="ClearCase"></a>ClearCase</h4><ul>
-<li>收费的集中式版本控制工具，安装比Windows还大，运行比蜗牛还慢</li>
-<li>能用ClearCase的一般是世界500强，他们有个共同的特点是财大气粗或者人傻钱多</li>
-</ul>
-<h4 id="VSS"><a href="#VSS" class="headerlink" title="VSS"></a>VSS</h4><ul>
-<li>微软的集中式版本控制工具，集成在Visual Studio中</li>
-<li>由于它反人类的设计，连微软自己都不好意思用了</li>
-</ul>
-<h3 id="集中式版本控制"><a href="#集中式版本控制" class="headerlink" title="集中式版本控制"></a>集中式版本控制</h3><p><img src="/img/1.png" alt="集中式版本控制"></p>
-<h3 id="分布式版本控制"><a href="#分布式版本控制" class="headerlink" title="分布式版本控制"></a>分布式版本控制</h3><p><img src="/img/2.png" alt="分布式版本控制"></p>
-<h3 id="git和SVN的简单对比"><a href="#git和SVN的简单对比" class="headerlink" title="git和SVN的简单对比"></a>git和SVN的简单对比</h3><h4 id="速度"><a href="#速度" class="headerlink" title="速度"></a>速度</h4><ul>
-<li>在很多情况下，git的速度远远比SVN快</li>
-</ul>
-<h4 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h4><ul>
-<li>SVN是集中式管理，git是分布式管理</li>
-</ul>
-<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><ul>
-<li>SVN使用分支比较笨拙，git可以轻松拥有无限个分支</li>
-<li>SVN必须联网才能正常工作，git支持本地版本控制工作</li>
-<li>旧版本的SVN会在每一个目录置放一个.svn，git只会在根目录拥有一个.git</li>
-</ul>
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><title>版本管理Git - zhuimar</title><meta name="description" content="git是一款开源的分布式版本控制工具,在世界上所有的分布式版本控制工具中，git是最快、最简单、最流行的版本管理工具..."><link type="text/css" rel="stylesheet" href="/css/pure.css?v=0.0.1"><link type="text/css" rel="stylesheet" href="/css/style.css?v=0.0.1"><script type="text/javascript" src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script></head></html><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">版本管理Git</h1><a id="logo" href="/.">zhuimar</a></div><div id="nav-menu"><div class="bitcron_nav"><div class="site_nav_wrap"><div class="site_nav"><span class="a_container"><a href="/." class="selected active current">首页</a></span><span class="a_container"><a href="/archives/">归档</a></span><span class="a_container"><a href="/about/">关于</a></span><span class="a_container"><a href="/atom.xml">订阅</a></span></div></div></div></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">版本管理Git</h1><div class="post-meta">2014-02-21<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" type="text/javascript"></script><span class="meta-space">  |  </span><span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span><span> 浏览</span></span></div><!--文章内容--><div class="post-content"><h3 id="GIT简介"><a href="#GIT简介" class="headerlink" title="GIT简介"></a>GIT简介</h3><p>什么是git?<br>1.git是一款开源的分布式版本控制工具<br>2.在世界上所有的分布式版本控制工具中，git是最快、最简单、最流行的版本管理工具</p>
+<p>git的起源<br>1.作者是Linux之父：Linus Benedict Torvalds<br>2.当初开发git仅仅是为了辅助Linux内核的开发（管理源代码）</p>
+<p>git的现状<br>1.在国外已经非常普及，国内并未普及（在慢慢普及）<br>2.越来越多的开源项目已经转移到git</p>
+<h3 id="其他版本控制工具"><a href="#其他版本控制工具" class="headerlink" title="其他版本控制工具"></a>其他版本控制工具</h3><p>CVS<br>1.最早的开源、免费的集中式版本控制工具<br>2.自身设计有问题，会造成提交文件不完整，版本库莫名其妙损坏的情况</p>
+<p>SVN<br>1.修正了CVS的一些稳定性问题，是目前用得最多的集中式版本库控制工具</p>
+<p>ClearCase<br>1.收费的集中式版本控制工具，安装比Windows还大，运行比蜗牛还慢<br>2.能用ClearCase的一般是世界500强，他们有个共同的特点是财大气粗或者人傻钱多</p>
+<p>VSS<br>1.微软的集中式版本控制工具，集成在Visual Studio中<br>2.由于它反人类的设计，连微软自己都不好意思用了</p>
+<h3 id="版本控制的类型"><a href="#版本控制的类型" class="headerlink" title="版本控制的类型"></a>版本控制的类型</h3><p>1.集中式版本控制<br>2.分布式版本控制</p>
+<h3 id="git和SVN的简单对比"><a href="#git和SVN的简单对比" class="headerlink" title="git和SVN的简单对比"></a>git和SVN的简单对比</h3><p>速度<br>在很多情况下，git的速度远远比SVN快</p>
+<p>结构<br>SVN是集中式管理，git是分布式管理</p>
+<p>其他<br>SVN使用分支比较笨拙，git可以轻松拥有无限个分支<br>SVN必须联网才能正常工作，git支持本地版本控制工作<br>旧版本的SVN会在每一个目录置放一个.svn，git只会在根目录拥有一个.git</p>
 <h3 id="SVN的工作流程"><a href="#SVN的工作流程" class="headerlink" title="SVN的工作流程"></a>SVN的工作流程</h3><p><img src="/img/3.png" alt="SVN的工作流程"></p>
 <h3 id="git的工作流程"><a href="#git的工作流程" class="headerlink" title="git的工作流程"></a>git的工作流程</h3><ul>
 <li>分布式和集中式的最大区别在于：在分布式下开发者可以本地提交每个开发者机器上都有一个服务器的数据库<br><img src="/img/4.png" alt="git的工作流程"></li>
 </ul>
-<h3 id="使用Git"><a href="#使用Git" class="headerlink" title="使用Git"></a>使用Git</h3><p>跟SVN一样，你可以通过命令行敲指令或者图形界面客户端使用git，在Mac上，比较好用的git图形界面客户端有<br>SourceTree<br>下载地址：（<a href="http://www.sourcetreeapp.com/download/）" target="_blank" rel="external">http://www.sourcetreeapp.com/download/）</a><br>GitHub<br>下载地址：(<a href="https://mac.github.com" target="_blank" rel="external">https://mac.github.com</a>)<br>不过它是专门为GitHub网站而设计的</p>
-<h3 id="Git的常用的指令"><a href="#Git的常用的指令" class="headerlink" title="Git的常用的指令"></a>Git的常用的指令</h3><p>git help ：git指令帮助手册</p>
-<ul>
-<li>查看其他指令的做法：git help 其他指令</li>
-</ul>
-<p>git config ：git的配置信息相关（修改的是.git/config文件）</p>
+<h3 id="使用Git"><a href="#使用Git" class="headerlink" title="使用Git"></a>使用Git</h3><p>跟SVN一样，你可以通过命令行敲指令或者图形界面客户端使用git，在Mac上，比较好用的git图形界面客户端有<br>SourceTree<br>下载地址:(<a href="http://www.sourcetreeapp.com/download/）" target="_blank" rel="external">http://www.sourcetreeapp.com/download/）</a><br>GitHub<br>下载地址:(<a href="https://mac.github.com" target="_blank" rel="external">https://mac.github.com</a>)<br>不过它是专门为GitHub网站而设计的</p>
+<h3 id="Git的常用的指令"><a href="#Git的常用的指令" class="headerlink" title="Git的常用的指令"></a>Git的常用的指令</h3><p>git help ：git指令帮助手册,查看其他指令的做法：git help 其他指令<br>git config ：git的配置信息相关（修改的是.git/config文件）</p>
 <ul>
 <li>配置用户名：git config “user.name” 用户名（用于跟踪修改记录）</li>
 <li>配置邮箱：git config “user.email” 邮箱（用于多人开发间的沟通）</li>
@@ -90,166 +63,84 @@
 <li>回退到上N个版本：git reset ––hard HEAD~N（N是一个整数）</li>
 <li>回退到任意一个版本：git reset ––hard 版本号（版本号用7位即可）</li>
 </ul>
-<p>git reflog ：查看分支引用记录（能够查看所有的版本号）<br>git rm：删除文件（删完之后要进行commit操作，才能同步到版本库）<br>git clone：下载远程仓库到本地</p>
+<p>git reflog ：查看分支引用记录（能够查看所有的版本号）<br>git rm：删除文件（删完之后要进行commit操作，才能同步到版本库）</p>
+<p>git clone：下载远程仓库到本地</p>
 <ul>
 <li>下载远程仓库到当前路径：git clone 仓库的URL</li>
 <li>下载远程仓库到特定路径：git clone 仓库的URL 存放仓库的路径</li>
 </ul>
 <p>git pull：下载远程仓库的最新信息到本地仓库<br>git push：将本地的仓库信息推送到远程仓库</p>
-<h2 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h2><p>如果是多人团队开发，最好还是搭建一个远程仓库,搭建远程仓库的途径</p>
-<p>自己搭建一个git服务器：费时费力<br>在GitHub上托管项目：公开项目免费、私有项目收费，很多第三方开源项目<br>在oschina上托管项目：完全免费，在国内访问速度快（推荐使用）</p>
-<h4 id="搭建GitHub远程仓库-–-配置SSH-Key"><a href="#搭建GitHub远程仓库-–-配置SSH-Key" class="headerlink" title="搭建GitHub远程仓库 – 配置SSH Key"></a>搭建GitHub远程仓库 – 配置SSH Key</h4><p>注册一个GitHub帐号：（<a href="https://github.com" target="_blank" rel="external">https://github.com</a>)<br>打开“Account Settings”<br>点击“SSH keys”<br>配置Mac的SSH Key的公钥（用于限制提交）<br>在Mac上生成SSH Key（在终端输入下面指令）<br>cd ~/.ssh<br>ssh-keygen -t rsa -C “你的邮箱地址”<br>然后一直敲回车<br>然后就会在~/.ssh目录下生成SSK Key的秘钥对<br>id_rsa ：私钥，不可泄露<br>id_rsa.pub ：公钥，可以公开（将这个文件的内容粘贴到GitHub上）<br>利用cat指令可以查看文件的内容<br>cat id_rsa.pub</p>
-<h4 id="搭建GitHub远程仓库–-添加仓库"><a href="#搭建GitHub远程仓库–-添加仓库" class="headerlink" title="搭建GitHub远程仓库– 添加仓库"></a>搭建GitHub远程仓库– 添加仓库</h4><p><img src="/img/6.png" alt="添加一个仓库"></p>
-<h4 id="拷贝仓库地址，用于下载到本地"><a href="#拷贝仓库地址，用于下载到本地" class="headerlink" title="拷贝仓库地址，用于下载到本地"></a>拷贝仓库地址，用于下载到本地</h4><p><img src="/img/7.png" alt="拷贝仓库地址用于下载到本地"></p>
-<h4 id="如果想删除仓库，也很简单"><a href="#如果想删除仓库，也很简单" class="headerlink" title="如果想删除仓库，也很简单"></a>如果想删除仓库，也很简单</h4><p><img src="/img/8.png" alt="删除"></p>
-<h2 id="搭建oschina远程仓库-–创建仓库"><a href="#搭建oschina远程仓库-–创建仓库" class="headerlink" title="搭建oschina远程仓库 –创建仓库"></a>搭建oschina远程仓库 –创建仓库</h2><p>注册一个oschina帐号:(<a href="https://git.oschina.net" target="_blank" rel="external">https://git.oschina.net</a>)<br><img src="/img/9.png" alt="创建一个新项目"><br><img src="/img/10.png" alt=""></p>
-<h2 id="搭建oschina远程仓库-–仓库地址"><a href="#搭建oschina远程仓库-–仓库地址" class="headerlink" title="搭建oschina远程仓库 –仓库地址"></a>搭建oschina远程仓库 –仓库地址</h2><p><img src="/img/11.png" alt=""></p>
-<p><img src="/img/12.png" alt="添加项目组成员"></p>
-<h2 id="搭建oschina远程仓库-–-删除仓库"><a href="#搭建oschina远程仓库-–-删除仓库" class="headerlink" title="搭建oschina远程仓库 – 删除仓库"></a>搭建oschina远程仓库 – 删除仓库</h2><p><img src="/img/13.png" alt="添加项目组成员"></p>
-<h1 id="二、本地的Git操作"><a href="#二、本地的Git操作" class="headerlink" title="二、本地的Git操作"></a>二、本地的Git操作</h1><hr>
-<h2 id="1-GIT命令行帮助"><a href="#1-GIT命令行帮助" class="headerlink" title="1.GIT命令行帮助"></a>1.GIT命令行帮助</h2><p>$ svn help<br>查看svn所有命令的帮助<br>$ svn help 子命令</p>
-<ul>
-<li>要退出帮助信息，按”q”</li>
-<li>翻看下页，按”空格”</li>
-<li>翻看上页，按”CTRL+B”</li>
-<li>要搜索相关文字，按”/“然后输入”相关文字”</li>
-</ul>
-<h2 id="2-创建代码库-amp-配置个人信息"><a href="#2-创建代码库-amp-配置个人信息" class="headerlink" title="2.创建代码库 &amp; 配置个人信息"></a>2.创建代码库 &amp; 配置个人信息</h2><h3 id="创建代码仓库"><a href="#创建代码仓库" class="headerlink" title="创建代码仓库"></a>创建代码仓库</h3><p>$ git init</p>
-<h3 id="配置用户名和邮箱"><a href="#配置用户名和邮箱" class="headerlink" title="配置用户名和邮箱"></a>配置用户名和邮箱</h3><p>$ git config user.name lnj<br>$ git config user.email lnj@gmail.com</p>
-<ul>
-<li>以上两个命令会将用户信息保存在当前代码仓库中,只有配置了用户和邮箱之后，git才能识别出操作的人员信息，通过钩子(hooks)程序可以设置一些动作, 例如单元测试发现问题后，自动给相关人员发送电子邮件</li>
-</ul>
-<h3 id="如果要一次性配置完成可以使用一下命令"><a href="#如果要一次性配置完成可以使用一下命令" class="headerlink" title="如果要一次性配置完成可以使用一下命令"></a>如果要一次性配置完成可以使用一下命令</h3><p>$ git config –global user.name lnj<br>$ git config –global user.email lnj321@gmail.com</p>
-<ul>
-<li>以上两个命令会将用户信息保存在用户目录下的 .gitconfig 文件中</li>
-</ul>
-<h3 id="查看当前所有配置"><a href="#查看当前所有配置" class="headerlink" title="查看当前所有配置"></a>查看当前所有配置</h3><p>$ git config -l</p>
-<h2 id="3-实际开发"><a href="#3-实际开发" class="headerlink" title="3.实际开发"></a>3.实际开发</h2><h3 id="创建代码，开始开发"><a href="#创建代码，开始开发" class="headerlink" title="创建代码，开始开发"></a>创建代码，开始开发</h3><p>$ touch main.c<br>$ open main.c</p>
-<h3 id="将代码添加到代码库"><a href="#将代码添加到代码库" class="headerlink" title="将代码添加到代码库"></a>将代码添加到代码库</h3><h4 id="查看当前代码库状态"><a href="#查看当前代码库状态" class="headerlink" title="查看当前代码库状态"></a>查看当前代码库状态</h4><p>$ git status</p>
-<h4 id="将文件添加到代码库"><a href="#将文件添加到代码库" class="headerlink" title="将文件添加到代码库"></a>将文件添加到代码库</h4><p>$ git add main.c</p>
-<h4 id="将修改提交到代码库"><a href="#将修改提交到代码库" class="headerlink" title="将修改提交到代码库"></a>将修改提交到代码库</h4><p>$ git commit -m “添加了main.c”</p>
-<p>提示：</p>
-<ul>
-<li>在此一定要使用 -m 参数指定修改的备注信息</li>
-<li>否则会进入 vim 编辑器，如果对vim不熟悉，会是很糟糕的事情</li>
-</ul>
-<h3 id="将当前文件夹下的所有新建或修改的文件一次性添加到代码库"><a href="#将当前文件夹下的所有新建或修改的文件一次性添加到代码库" class="headerlink" title="将当前文件夹下的所有新建或修改的文件一次性添加到代码库"></a>将当前文件夹下的所有新建或修改的文件一次性添加到代码库</h3><p>$ git add .</p>
-<h4 id="添加多个文件"><a href="#添加多个文件" class="headerlink" title="添加多个文件"></a>添加多个文件</h4><p>$ touch Person.h Person.m<br>$ git add .<br>$ git commit -m “添加了Person类”<br>$ open Person.h<br>$ git add .<br>$ git commit -m “增加Person类属性”</p>
-<ul>
-<li>注意 使用git时，每一次修改都需要添加再提交，这一点是与svn不一样的<h4 id="git-的重要概念及工作原理"><a href="#git-的重要概念及工作原理" class="headerlink" title="git 的重要概念及工作原理"></a>git 的重要概念及工作原理</h4>工作区<br>暂存区(staged)<br>分支(HEAD)</li>
-</ul>
-<h2 id="3-别名-amp-日志"><a href="#3-别名-amp-日志" class="headerlink" title="3.别名 &amp; 日志"></a>3.别名 &amp; 日志</h2><p>$ git config alias.st status<br>$ git config alias.ci “commit -m”</p>
-<ul>
-<li>个人建议：除非特殊原因，最好不要设置别名，否则换一台机器就不会用了<h4 id="查看所有版本库日志"><a href="#查看所有版本库日志" class="headerlink" title="查看所有版本库日志"></a>查看所有版本库日志</h4>$ git log<h4 id="查看指定文件的版本库日志"><a href="#查看指定文件的版本库日志" class="headerlink" title="查看指定文件的版本库日志"></a>查看指定文件的版本库日志</h4>$ git log 文件名<h4 id="配置带颜色的log别名"><a href="#配置带颜色的log别名" class="headerlink" title="配置带颜色的log别名"></a>配置带颜色的log别名</h4>$ git config –global alias.lg “log –color –graph –pretty=format:’%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset’ –abbrev-commit”<br>提示：在git中，版本号是一个由SHA1生成的哈希值</li>
-</ul>
-<h2 id="4-版本号，让我们在任意版本之间穿梭"><a href="#4-版本号，让我们在任意版本之间穿梭" class="headerlink" title="4.版本号，让我们在任意版本之间穿梭"></a>4.版本号，让我们在任意版本之间穿梭</h2><h3 id="回到当前版本，放弃所有没有提交的修改"><a href="#回到当前版本，放弃所有没有提交的修改" class="headerlink" title="回到当前版本，放弃所有没有提交的修改"></a>回到当前版本，放弃所有没有提交的修改</h3><p>$ git reset –hard HEAD</p>
-<h3 id="回到上一个版本"><a href="#回到上一个版本" class="headerlink" title="回到上一个版本"></a>回到上一个版本</h3><p>$ git reset –hard HEAD^</p>
-<h3 id="回到之前第3个修订版本"><a href="#回到之前第3个修订版本" class="headerlink" title="回到之前第3个修订版本"></a>回到之前第3个修订版本</h3><p>$ git reset –hard HEAD~(3)</p>
-<h3 id="回到指定版本号的版本"><a href="#回到指定版本号的版本" class="headerlink" title="回到指定版本号的版本"></a>回到指定版本号的版本</h3><p>$ git reset e695b67</p>
-<h3 id="查看分支引用记录"><a href="#查看分支引用记录" class="headerlink" title="查看分支引用记录"></a>查看分支引用记录</h3><p>$ git reflog</p>
-<h2 id="5-单个文件的修改管理"><a href="#5-单个文件的修改管理" class="headerlink" title="5.单个文件的修改管理"></a>5.单个文件的修改管理</h2><h3 id="查看文件变化"><a href="#查看文件变化" class="headerlink" title="查看文件变化"></a>查看文件变化</h3><p>$ git diff</p>
-<h3 id="撤销对文件做的修改"><a href="#撤销对文件做的修改" class="headerlink" title="撤销对文件做的修改"></a>撤销对文件做的修改</h3><p>$ git checkout Person.h</p>
-<h3 id="从代码库（暂存区中删除文件）"><a href="#从代码库（暂存区中删除文件）" class="headerlink" title="从代码库（暂存区中删除文件）"></a>从代码库（暂存区中删除文件）</h3><h1 id="三、Git团队开发操作"><a href="#三、Git团队开发操作" class="headerlink" title="三、Git团队开发操作"></a>三、Git团队开发操作</h1><hr>
-<h2 id="1-建立代码仓库-专门用于团队开发的代码仓库"><a href="#1-建立代码仓库-专门用于团队开发的代码仓库" class="headerlink" title="1.建立代码仓库(专门用于团队开发的代码仓库)"></a>1.建立代码仓库(专门用于团队开发的代码仓库)</h2><h3 id="切换目录"><a href="#切换目录" class="headerlink" title="切换目录"></a>切换目录</h3><p>$ cd /Users/lnj/Desktop/git演练/公司/weibo</p>
-<h3 id="建立空白代码库-专门用于团队开发"><a href="#建立空白代码库-专门用于团队开发" class="headerlink" title="建立空白代码库(专门用于团队开发)"></a>建立空白代码库(专门用于团队开发)</h3><p>$ git init –bare</p>
-<h2 id="2-项目经理准备项目-前奏"><a href="#2-项目经理准备项目-前奏" class="headerlink" title="2.项目经理准备项目(前奏)"></a>2.项目经理准备项目(前奏)</h2><h3 id="切换目录-1"><a href="#切换目录-1" class="headerlink" title="切换目录"></a>切换目录</h3><p>$ cd /Users/lnj/Desktop/git演练/经理</p>
-<h3 id="“克隆”代码库到本地"><a href="#“克隆”代码库到本地" class="headerlink" title="“克隆”代码库到本地"></a>“克隆”代码库到本地</h3><p>$ git clone /Users/lnj/Desktop/git演练/公司/weibo/</p>
-<h3 id="个人信息配置-因为要演示一台机器上的多人协作，日常开发可以忽略"><a href="#个人信息配置-因为要演示一台机器上的多人协作，日常开发可以忽略" class="headerlink" title="个人信息配置(因为要演示一台机器上的多人协作，日常开发可以忽略)"></a>个人信息配置(因为要演示一台机器上的多人协作，日常开发可以忽略)</h3><p>$ git config user.name manager<br>$ git config user.email manager@163.com</p>
-<p>.gitignore<br>.gitignore可以指定哪些文件不纳入版本库的管理</p>
-<p>参考网址:(<a href="https://github.com/github/gitignore" target="_blank" rel="external">https://github.com/github/gitignore</a>)</p>
-<h1 id="命令行中进入与-git同级的目录"><a href="#命令行中进入与-git同级的目录" class="headerlink" title="命令行中进入与.git同级的目录"></a>命令行中进入与.git同级的目录</h1><p>$ cd /Users/lnj/Desktop/git演练/经理/weibo</p>
-<ul>
-<li>将以下命令一次性粘贴到命令行中</li>
-</ul>
+<h3 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h3><p>如果是多人团队开发，最好还是搭建一个远程仓库,搭建远程仓库的途径自己搭建一个git服务器：费时费力，在GitHub上托管项目：公开项目免费、私有项目收费，很多第三方开源项目，在oschina上托管项目：完全免费，在国内访问速度快（推荐使用）</p>
+<p>配置公钥<br>搭建GitHub远程仓库 – 配置<code>SSH Key</code><br>注册一个GitHub帐号：（<a href="https://github.com" target="_blank" rel="external">https://github.com</a>)<br>打开·“Account Settings”·<br>点击·“SSH keys”·<br>配置Mac的<code>SSH Key</code>的公钥（用于限制提交）<br>在Mac上生成<code>SSH Key</code>（在终端输入下面指令）<br>cd ~/.ssh<br>ssh-keygen -t rsa -C”你的邮箱地址”<br>然后一直敲回车<br>然后就会在<code>~/.ssh</code>目录下生成<code>SSK Key</code>的秘钥对<br><code>id_rsa</code> ：私钥，不可泄露<br><code>id_rsa.pub</code> ：公钥，可以公开（将这个文件的内容粘贴到GitHub上）<br>利用cat指令可以查看文件的内容<br>cat id_rsa.pub</p>
+<p>添加仓库<br><img src="/img/6.png" alt="添加一个仓库"><br>拷贝仓库地址，用于下载到本地<br><img src="/img/7.png" alt="拷贝仓库地址用于下载到本地"><br>如果想删除仓库，也很简单<br><img src="/img/8.png" alt="删除"></p>
+<h3 id="搭建oschina远程仓库"><a href="#搭建oschina远程仓库" class="headerlink" title="搭建oschina远程仓库"></a>搭建oschina远程仓库</h3><p>创建仓库<br>注册一个oschina帐号:(<a href="https://git.oschina.net" target="_blank" rel="external">https://git.oschina.net</a>)<br><img src="/img/9.png" alt="创建一个新项目"><br><img src="/img/10.png" alt=""></p>
+<p>仓库地址<br><img src="/img/11.png" alt=""><br><img src="/img/12.png" alt="添加项目组成员"></p>
+<p> 删除仓库<br><img src="/img/13.png" alt="添加项目组成员"></p>
+<h3 id="本地的Git操作"><a href="#本地的Git操作" class="headerlink" title="本地的Git操作"></a>本地的Git操作</h3><p>1.GIT命令行帮助<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ svn help</div></pre></td></tr></table></figure></p>
+<p>查看svn所有命令的帮助<br>$ svn help 子命令<br>要退出帮助信息，按”q”<br>翻看下页，按”空格”<br>翻看上页，按”CTRL+B”<br>要搜索相关文字，按”/“然后输入”相关文字”</p>
+<p>2.创建代码库 &amp; 配置个人信息<br>创建代码仓库<br>$ git init<br>配置用户名和邮箱<br>$ git config user.name lnj<br>$ git config user.email lnj@gmail.com<br>以上两个命令会将用户信息保存在当前代码仓库中,只有配置了用户和邮箱之后，git才能识别出操作的人员信息，通过钩子(hooks)程序可以设置一些动作, 例如单元测试发现问题后，自动给相关人员发送电子邮件</p>
+<p>如果要一次性配置完成可以使用一下命,以下两个命令会将用户信息保存在用户目录下的 .gitconfig 文件中<br>$ git config –global user.name lnj<br>$ git config –global user.email lnj321@gmail.com</p>
+<p> 查看当前所有配置<br>$ git config -l</p>
+<p>3.实际开发<br>创建代码，开始开发<br>$ touch main.c<br>$ open main.c</p>
+<p>将代码添加到代码库<br>查看当前代码库状态<br>$ git status<br>将文件添加到代码库<br>$ git add main.c<br>将修改提交到代码库<br>$ git commit -m “添加了main.c”</p>
+<p>提示：<br>在此一定要使用 -m 参数指定修改的备注信息<br>否则会进入 vim 编辑器，如果对vim不熟悉，会是很糟糕的事情</p>
+<p>将当前文件夹下的所有新建或修改的文件一次性添加到代码库<br>$ git add .<br>添加多个文件<br>$ touch Person.h Person.m<br>$ git add .<br>$ git commit -m “添加了Person类”<br>$ open Person.h<br>$ git add .<br>$ git commit -m “增加Person类属性”<br><code>注意</code> 使用git时，每一次修改都需要添加再提交，这一点是与svn不一样的<br> git 的重要概念及工作原理<br>工作区<br>暂存区(staged)<br>分支(HEAD)</p>
+<p>3.别名 &amp; 日志<br>$ git config alias.st status<br>$ git config alias.ci “commit -m”<br><code>个人建议</code>：除非特殊原因，最好不要设置别名，否则换一台机器就不会用了<br>查看所有版本库日志<br>$ git log<br>查看指定文件的版本库日志<br>$ git log 文件名<br>配置带颜色的log别名<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git config --global alias.lg <span class="string">"log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit"</span></div></pre></td></tr></table></figure></p>
+<p><code>提示</code>：在git中，版本号是一个由SHA1生成的哈希值</p>
+<p>4.版本号，让我们在任意版本之间穿梭<br>回到当前版本，放弃所有没有提交的修改<br>$ git reset –hard HEAD<br>回到上一个版本<br>$ git reset –hard HEAD^<br>回到之前第3个修订版本<br>$ git reset –hard HEAD~(3)<br>回到指定版本号的版本<br>$ git reset e695b67<br>查看分支引用记录<br>$ git reflog</p>
+<p>5.单个文件的修改管理<br>查看文件变化<br>$ git diff<br>撤销对文件做的修改<br>$ git checkout Person.h<br>从代码库（暂存区中删除文件）</p>
+<h3 id="Git团队开发操作"><a href="#Git团队开发操作" class="headerlink" title="Git团队开发操作"></a>Git团队开发操作</h3><p>1.建立代码仓库(专门用于团队开发的代码仓库)<br>切换目录<br>$ cd /Users/lnj/Desktop/git演练/公司/weibo<br>建立空白代码库(专门用于团队开发)<br>$ git init –bare</p>
+<p>2.项目经理准备项目(前奏)<br>切换目录<br>$ cd /Users/lnj/Desktop/git演练/经理<br>“克隆”代码库到本地<br>$ git clone /Users/lnj/Desktop/git演练/公司/weibo/</p>
+<p>个人信息配置(因为要演示一台机器上的多人协作，日常开发可以忽略)<br>$ git config user.name manager<br>$ git config user.email manager@163.com</p>
+<p>.gitignore<br>.gitignore可以指定哪些文件不纳入版本库的管理<br>参考网址:(<a href="https://github.com/github/gitignore" target="_blank" rel="external">https://github.com/github/gitignore</a>)</p>
+<p>命令行中进入与.git同级的目录<br>$ cd /Users/lnj/Desktop/git演练/经理/weibo<br> 将以下命令一次性粘贴到命令行中</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">echo -e "# Xcode</div><div class="line">#</div><div class="line">build/</div><div class="line">*.pbxuser</div><div class="line">*.mode1v3</div><div class="line">*.mode2v3</div><div class="line">*.perspectivev3</div><div class="line">xcuserdata</div><div class="line">*.xccheckout</div><div class="line">*.moved-aside</div><div class="line">DerivedData</div><div class="line">*.hmap</div><div class="line">*.ipa</div><div class="line">*.xcuserstate</div><div class="line"># CocoaPods</div><div class="line">#</div><div class="line"># We recommend against adding the Pods directory to your .gitignore. However</div><div class="line"># you should judge for yourself, the pros and cons are mentioned at:</div><div class="line"># http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control</div><div class="line">#</div><div class="line"># Pods/" &gt; .gitignore</div></pre></td></tr></table></figure>
-<h3 id="将-gitignore添加到代码库"><a href="#将-gitignore添加到代码库" class="headerlink" title="将.gitignore添加到代码库"></a>将.gitignore添加到代码库</h3><p>$ git add .gitignore</p>
-<h2 id="3-创建项目"><a href="#3-创建项目" class="headerlink" title="3.创建项目"></a>3.创建项目</h2><ul>
-<li>提交同时”push”到远程代码仓库</li>
-</ul>
-<h2 id="4-新人加入"><a href="#4-新人加入" class="headerlink" title="4.新人加入"></a>4.新人加入</h2><p>…</p>
-<h2 id="5-分布式的代码库-仅供参考"><a href="#5-分布式的代码库-仅供参考" class="headerlink" title="5.分布式的代码库 - 仅供参考"></a>5.分布式的代码库 - 仅供参考</h2><ul>
-<li>由于git是分布式的，任何一台计算机上都保留有完整的代码库的内容，因此可以把团队开发的代码库放在任何位置</li>
-</ul>
-<h2 id="6-分支管理-Tag"><a href="#6-分支管理-Tag" class="headerlink" title="6.分支管理 - Tag"></a>6.分支管理 - Tag</h2><h3 id="查看当前标签"><a href="#查看当前标签" class="headerlink" title="查看当前标签"></a>查看当前标签</h3><p>$ git tag</p>
-<h3 id="在本地代码库给项目打上一个标签"><a href="#在本地代码库给项目打上一个标签" class="headerlink" title="在本地代码库给项目打上一个标签"></a>在本地代码库给项目打上一个标签</h3><p>$ git tag -a v1.0 -m ‘Version 1.0’</p>
-<h3 id="将标签添推送到远程代码库中"><a href="#将标签添推送到远程代码库中" class="headerlink" title="将标签添推送到远程代码库中"></a>将标签添推送到远程代码库中</h3><p>$ git push origin v1.0</p>
-<ul>
-<li>使用tag，就能够将项目快速切换到某一个中间状态，例如产品开发线上的某一个稳定版本</li>
-</ul>
-<h3 id="签出v1-0标签"><a href="#签出v1-0标签" class="headerlink" title="签出v1.0标签"></a>签出v1.0标签</h3><p>$ git checkout v1.0</p>
-<h3 id="从签出状态创建v1-0bugfix分支"><a href="#从签出状态创建v1-0bugfix分支" class="headerlink" title="从签出状态创建v1.0bugfix分支"></a>从签出状态创建v1.0bugfix分支</h3><p>$ git checkout -b bugfix1.0</p>
-<h3 id="查看远程分支"><a href="#查看远程分支" class="headerlink" title="查看远程分支"></a>查看远程分支</h3><p>$ git branch -r</p>
-<h3 id="删除远程分支"><a href="#删除远程分支" class="headerlink" title="删除远程分支"></a>删除远程分支</h3><p>$ git branch -r -d origin/bugfix1.0</p>
-<h1 id="四、Git分支管理-了解"><a href="#四、Git分支管理-了解" class="headerlink" title="四、Git分支管理(了解)"></a>四、Git分支管理(了解)</h1><hr>
-<h2 id="1-分布式的代码库-仅供参考"><a href="#1-分布式的代码库-仅供参考" class="headerlink" title="1.分布式的代码库 - 仅供参考"></a>1.分布式的代码库 - 仅供参考</h2><ul>
-<li>由于git是分布式的，任何一台计算机上都保留有完整的代码库的内容，因此可以把团队开发的代码库放在任何位置</li>
-<li>多个远程代码库之间的同步演练”提示，此演练仅供了解，具体的使用，需要一定的团队规模之后，才能够体会”</li>
-</ul>
-<h2 id="2-分支管理-Tag"><a href="#2-分支管理-Tag" class="headerlink" title="2.分支管理 - Tag"></a>2.分支管理 - Tag</h2><h3 id="查看当前标签-1"><a href="#查看当前标签-1" class="headerlink" title="查看当前标签"></a>查看当前标签</h3><p>$ git tag</p>
-<h3 id="在本地代码库给项目打上一个标签-1"><a href="#在本地代码库给项目打上一个标签-1" class="headerlink" title="在本地代码库给项目打上一个标签"></a>在本地代码库给项目打上一个标签</h3><p>$ git tag -a v1.0 -m ‘Version 1.0’</p>
-<h3 id="将标签添推送到远程代码库中-1"><a href="#将标签添推送到远程代码库中-1" class="headerlink" title="将标签添推送到远程代码库中"></a>将标签添推送到远程代码库中</h3><p>$ git push origin v1.0</p>
-<h3 id="使用tag，就能够将项目快速切换到某一个中间状态，例如产品开发线上的某一个稳定版本"><a href="#使用tag，就能够将项目快速切换到某一个中间状态，例如产品开发线上的某一个稳定版本" class="headerlink" title="使用tag，就能够将项目快速切换到某一个中间状态，例如产品开发线上的某一个稳定版本"></a>使用tag，就能够将项目快速切换到某一个中间状态，例如产品开发线上的某一个稳定版本</h3><h3 id="签出v1-0标签-1"><a href="#签出v1-0标签-1" class="headerlink" title="签出v1.0标签"></a>签出v1.0标签</h3><p>$ git checkout v1.0</p>
-<h3 id="从签出状态创建v1-0bugfix分支-1"><a href="#从签出状态创建v1-0bugfix分支-1" class="headerlink" title="从签出状态创建v1.0bugfix分支"></a>从签出状态创建v1.0bugfix分支</h3><p>$ git checkout -b bugfix1.0</p>
-<h3 id="查看远程分支-1"><a href="#查看远程分支-1" class="headerlink" title="查看远程分支"></a>查看远程分支</h3><p>$ git branch -r</p>
-<h3 id="删除远程分支-1"><a href="#删除远程分支-1" class="headerlink" title="删除远程分支"></a>删除远程分支</h3><p>$ git branch -r -d origin/bugfix1.0</p>
-<h1 id="四、Github使用-amp-如何学习第三方库"><a href="#四、Github使用-amp-如何学习第三方库" class="headerlink" title="四、Github使用&amp;如何学习第三方库"></a>四、Github使用&amp;如何学习第三方库</h1><hr>
-<h2 id="如何使用-学习第三方框架-优秀的第三方框架都在-github-com。"><a href="#如何使用-学习第三方框架-优秀的第三方框架都在-github-com。" class="headerlink" title="如何使用/学习第三方框架?优秀的第三方框架都在 github.com。"></a>如何使用/学习第三方框架?优秀的第三方框架都在 github.com。</h2><h3 id="1-搜索"><a href="#1-搜索" class="headerlink" title="1.搜索"></a>1.搜索</h3><h3 id="2-git-clone-获得完整版本"><a href="#2-git-clone-获得完整版本" class="headerlink" title="2.git clone 获得完整版本"></a>2.git clone 获得完整版本</h3><p>$ git clone <a href="https://github.com/AFNetworking/AFNetworking.git" target="_blank" rel="external">https://github.com/AFNetworking/AFNetworking.git</a></p>
-<h3 id="3-获取最新版本-git-pull"><a href="#3-获取最新版本-git-pull" class="headerlink" title="3.获取最新版本 git pull"></a>3.获取最新版本 git pull</h3><ul>
-<li>进入clone的本地文件夹<br>$ git pull<h3 id="4-看github上的文档-优秀的第三方框架都有好的文档"><a href="#4-看github上的文档-优秀的第三方框架都有好的文档" class="headerlink" title="4.看github上的文档,优秀的第三方框架都有好的文档"></a>4.看github上的文档,优秀的第三方框架都有好的文档</h3><h3 id="5-编写测试程序-看运行结果"><a href="#5-编写测试程序-看运行结果" class="headerlink" title="5.编写测试程序,看运行结果"></a>5.编写测试程序,看运行结果</h3><h3 id="6-针对感兴趣的部分-看源代码"><a href="#6-针对感兴趣的部分-看源代码" class="headerlink" title="6.针对感兴趣的部分,看源代码"></a>6.针对感兴趣的部分,看源代码</h3><h3 id="7-有问题去-http-stackoverflow-com"><a href="#7-有问题去-http-stackoverflow-com" class="headerlink" title="7.有问题去(http://stackoverflow.com)"></a>7.有问题去(<a href="http://stackoverflow.com" target="_blank" rel="external">http://stackoverflow.com</a>)</h3></li>
-</ul>
-<h1 id="五、练习笔记"><a href="#五、练习笔记" class="headerlink" title="五、练习笔记"></a>五、练习笔记</h1><hr>
-<p>1.新建一个“本地仓库”<br>$ git init</p>
-<p>2.配置仓库<br>》告诉git你是谁<br>git config user.name lnj<br>》告诉git怎么联系你<br>git config user.email lnj@itcast.cn</p>
-<p>》上面一种配置方式是一次性的配置， 会配置到被管理文件的。git文件夹下<br>》下面一种配置方式是一劳永逸的方式:<br>git config –global user.name lmj<br>git config –global user.email lmj@itcast.cn</p>
-<p>》如何学习git指令</p>
-<blockquote>
-<p>学习git指令和SVN指令的学习其实是一样的， 只不过展现的方式不太一样， git是通过使用指南的方式告诉我们某一个指令如何使用<br>这个指南其实是一个不可编辑的vim<br>Q退出指南<br>按空格下一页<br>control + B 上一页<br>/需要搜索的内容 可以进行搜索</p>
-</blockquote>
-<p>git常规指令<br>》git status 查看文件状态<br>》git add 添加文件到“暂存区”<br>》git commit 文件名称   添加文件到”本地仓库“<br>注意：如果没有在commit后面加上 -m说明修改了什么， 会自动进入vim界面， 要求我们输入修改信息<br>按键盘上的 i 代表开始输入内容<br>输入完毕之后按 esc 然后按 ：wq<br>所以： 如果以后在终端中提交最好在后面加上-m<br>》注意： git中的add和SVN中的add不太一样， SVN中只需要add一次， 而git中每次新建或者修改之后都需要重新add</p>
-<p>》1.为添加之前的颜色<br>红色 代表在”工作区“<br>》2.添加到暂存区之后的颜色<br>绿色 代码在”暂存区“</p>
-<p>》注意： git默认没有简写指令<br>》注意： 一般情况下不建议自定义简写指令<br>》git中的简写称之为起别名</p>
-<blockquote>
-<p>查看log<br>》git log 文件名<br>》注意： GIt中的版本号是一个”40位“的哈希值， 而SVN中的版本号是一个递增的整数<br>》已经提交<br>git reset —hard HEAD^ 返回上一个版本<br>其中—hard代表强制重置<br>git reset —hard 版本号（只需要写前7位）<br>》未提交<br>git checkout 文件名 回退到上一次提交的版本<br>git reset —hard HEAD  回退到上一次提交的版, 注意HEAD后面没有尖号^</p>
-</blockquote>
-<p>c9ad690 HEAD@{0}: commit: main.c</p>
-<p>7026f99 HEAD@{1}: commit: 输出结果</p>
-<p>e950c89 HEAD@{2}: commit: 新增输入</p>
-<p>c7bf91c HEAD@{3}: commit: 添加变量</p>
-<p>cbd9e52 HEAD@{4}: commit: 删除print函数</p>
-<p>45ea44d HEAD@{5}: commit: 添加了printf函数</p>
-<p>0da06d8 HEAD@{6}: commit (initial): i</p>
-<blockquote>
-<p>git reflog  查看所有修改信息（所有版本）</p>
-</blockquote>
-<p>》查看文件被修改的什么地方<br>】    》git diff 文件名<br>》如果显示绿色代表新增<br>》如果显示红色代表删除</p>
+<p>将.gitignore添加到代码库<br>$ git add .gitignore</p>
+<h3 id="分布式的代码库-仅供参考"><a href="#分布式的代码库-仅供参考" class="headerlink" title="分布式的代码库 - 仅供参考"></a>分布式的代码库 - 仅供参考</h3><p>由于git是分布式的，任何一台计算机上都保留有完整的代码库的内容，因此可以把团队开发的代码库放在任何位置</p>
+<p>分支管理 - Tag<br>查看当前标签<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git tag</div></pre></td></tr></table></figure></p>
+<p>在本地代码库给项目打上一个标签<br> <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git tag -a v1.0 -m 'Version 1.0'</div></pre></td></tr></table></figure></p>
+<p>将标签添推送到远程代码库中<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git push origin v1<span class="number">.0</span></div></pre></td></tr></table></figure></p>
+<p>使用tag，就能够将项目快速切换到某一个中间状态，例如产品开发线上的某一个稳定版本<br>签出v1.0标签<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git checkout v1<span class="number">.0</span></div></pre></td></tr></table></figure></p>
+<p>从签出状态创建v1.0bugfix分支<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git checkout -b bugfix1<span class="number">.0</span></div></pre></td></tr></table></figure></p>
+<p> 查看远程分支<br> <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git branch -r</div></pre></td></tr></table></figure></p>
+<p>删除远程分支<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git branch -r -d origin/bugfix1<span class="number">.0</span></div></pre></td></tr></table></figure></p>
+<h3 id="Git分支管理-了解"><a href="#Git分支管理-了解" class="headerlink" title="Git分支管理(了解)"></a>Git分支管理(了解)</h3><p>分布式的代码库 - 仅供参考<br>1.由于git是分布式的，任何一台计算机上都保留有完整的代码库的内容，因此可以把团队开发的代码库放在任何位置<br>2.多个远程代码库之间的同步演练”提示，此演练仅供了解，具体的使用，需要一定的团队规模之后，才能够体会”</p>
+<p>分支管理 - Tag<br>查看当前标签<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git tag</div></pre></td></tr></table></figure></p>
+<p>在本地代码库给项目打上一个标签<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git tag -a v1.0 -m 'Version 1.0'</div></pre></td></tr></table></figure></p>
+<p>将标签添推送到远程代码库中<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git push origin v1<span class="number">.0</span></div></pre></td></tr></table></figure></p>
+<p>使用tag，就能够将项目快速切换到某一个中间状态，例如产品开发线上的某一个稳定版本<br>签出v1.0标签<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git checkout v1<span class="number">.0</span></div></pre></td></tr></table></figure></p>
+<p>从签出状态创建v1.0bugfix分支<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git checkout -b bugfix1<span class="number">.0</span></div></pre></td></tr></table></figure></p>
+<p>查看远程分支<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git branch -r</div></pre></td></tr></table></figure></p>
+<p>删除远程分支<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git branch -r -d origin/bugfix1<span class="number">.0</span></div></pre></td></tr></table></figure></p>
+<h3 id="Github使用-amp-如何学习第三方库"><a href="#Github使用-amp-如何学习第三方库" class="headerlink" title="Github使用&amp;如何学习第三方库"></a>Github使用&amp;如何学习第三方库</h3><p>如何使用/学习第三方框架?优秀的第三方框架都在 github.com。<br>1.搜索<br>2.git clone 获得完整版本<br>$ git clone <a href="https://github.com/AFNetworking/AFNetworking.git" target="_blank" rel="external">https://github.com/AFNetworking/AFNetworking.git</a><br>3.获取最新版本 git pull<br>进入clone的本地文件夹<br>$ git pull<br>4.看github上的文档,优秀的第三方框架都有好的文档<br>5.编写测试程序,看运行结果<br>6.针对感兴趣的部分,看源代码<br>7.有问题去(<a href="http://stackoverflow.com" target="_blank" rel="external">http://stackoverflow.com</a>)</p>
+<h3 id="练习笔记"><a href="#练习笔记" class="headerlink" title="练习笔记"></a>练习笔记</h3><p>1.新建一个“本地仓库”<br>$ git init<br>2.配置仓库<br>告诉git你是谁<br>git config user.name lnj<br>告诉git怎么联系你<br>git config user.email lnj@itcast.cn</p>
+<p>上面一种配置方式是一次性的配置， 会配置到被管理文件的。git文件夹下<br>下面一种配置方式是一劳永逸的方式:<br>git config –global user.name lmj<br>git config –global user.email lmj@itcast.cn</p>
+<p>如何学习git指令<br>学习git指令和SVN指令的学习其实是一样的， 只不过展现的方式不太一样， git是通过使用指南的方式告诉我们某一个指令如何使用<br>这个指南其实是一个不可编辑的vim<br>Q退出指南<br>按空格下一页<br>control + B 上一页<br>需要搜索的内容 可以进行搜索</p>
+<p>git常规指令<br>git status 查看文件状态<br>git add 添加文件到“暂存区”<br>git commit 文件名称   添加文件到”本地仓库“<br>注意：如果没有在commit后面加上 -m说明修改了什么， 会自动进入vim界面， 要求我们输入修改信息<br>按键盘上的 i 代表开始输入内容<br>输入完毕之后按 esc 然后按 ：wq<br>所以： 如果以后在终端中提交最好在后面加上-m<br>注意： git中的add和SVN中的add不太一样， SVN中只需要add一次， 而git中每次新建或者修改之后都需要重新add</p>
+<p>1.为添加之前的颜色<br>红色 代表在”工作区“<br>2.添加到暂存区之后的颜色<br>绿色 代码在”暂存区“</p>
+<p>注意： git默认没有简写指令<br>注意： 一般情况下不建议自定义简写指令<br>git中的简写称之为起别名</p>
+<p>查看log<br>git log 文件名<br>注意： GIt中的版本号是一个”40位“的哈希值， 而SVN中的版本号是一个递增的整数<br>已经提交<br>git reset —hard HEAD^ 返回上一个版本<br>其中—hard代表强制重置<br>git reset —hard 版本号（只需要写前7位）<br>未提交<br>git checkout 文件名 回退到上一次提交的版本<br>git reset —hard HEAD  回退到上一次提交的版, 注意HEAD后面没有尖号^</p>
+<p>c9ad690 HEAD@{0}: commit: main.c<br>7026f99 HEAD@{1}: commit: 输出结果<br>e950c89 HEAD@{2}: commit: 新增输入<br>c7bf91c HEAD@{3}: commit: 添加变量<br>cbd9e52 HEAD@{4}: commit: 删除print函数<br>45ea44d HEAD@{5}: commit: 添加了printf函数<br>0da06d8 HEAD@{6}: commit (initial): i</p>
+<p>git reflog  查看所有修改信息（所有版本）<br>查看文件被修改的什么地方<br>git diff 文件名<br>如果显示绿色代表新增<br>如果显示红色代表删除</p>
 <p>远程仓库<br>SVN需要一个单独的服务器<br>Git不需要： 文件中、U盘中、云上、github、OSChina…</p>
-<p>1.新建git远程仓库<br>》git init —bare<br>注意： 这个仓库仅仅是用于管理代码， 不参与开发</p>
-<p>2.项目经理初始化项目<br>》2.1先克隆一份空得仓库到本地<br>git clone /Users/apple/Desktop/working/公司远程仓库</p>
-<p>》2.2忽略不需要加入版本控制器的文件以及文件夹<br>.gitignore<br>注意： 配置忽略文件只需要到github上搜索.gitignore拷贝别人写好的代码即可<br>配置.gitignore一定要在和.git隐藏文件夹同一级的目录下<br>》2.3生成好.gitignore文件之后， 还需要将.gitignore文件添加到版本控制<br>git add  .gitignore<br>git commit .gitignore -m””</p>
-<p>》2.4新建项目<br>》 source conrol—&gt;commit  将代码提交到本地仓库<br>》source conrol—&gt;push 将代码提交到远程仓库</p>
-<p>git中默认就会创建一个分支， 这个分支叫做origin/master， 相当于svn中的trunk</p>
-<p>专业人员只需要在git仓库的hooks文件夹中写一些指令， 就可以完成自动测试（压力测试、自动测试、集成测试、冒烟测试、。。。）</p>
-<p>》 和SVN一样， 如果服务器仓库的代码被修改了， 我们再提交代码也会报错。<br>fetch first == out of data</p>
-<p>总结：<br>git和svn最大的区别<br>》1.git每次修改新增都需要add<br>》2.git每台电脑都有一个仓库<br>》3.git是先提交到本地仓库， 再提交到远程仓库</p>
+<p>1.新建git远程仓库<br>git init —bare<br>注意： 这个仓库仅仅是用于管理代码， 不参与开发</p>
+<p>2.项目经理初始化项目<br>2.1先克隆一份空得仓库到本地<br>git clone /Users/apple/Desktop/working/公司远程仓库</p>
+<p>2.2忽略不需要加入版本控制器的文件以及文件夹<br>.gitignore<br>注意： 配置忽略文件只需要到github上搜索.gitignore拷贝别人写好的代码即可<br>配置.gitignore一定要在和.git隐藏文件夹同一级的目录下<br>2.3生成好.gitignore文件之后， 还需要将.gitignore文件添加到版本控制<br>git add  .gitignore<br>git commit .gitignore -m””</p>
+<p>2.4新建项目<br>source conrol—&gt;commit  将代码提交到本地仓库<br>source conrol—&gt;push 将代码提交到远程仓库</p>
+<p>git中默认就会创建一个分支， 这个分支叫做origin/master， 相当于svn中的trunk,专业人员只需要在git仓库的hooks文件夹中写一些指令， 就可以完成自动测试（压力测试、自动测试、集成测试、冒烟测试…)和SVN一样， 如果服务器仓库的代码被修改了， 我们再提交代码也会报错。<br>fetch first == out of data</p>
+<p>总结：<br>git和svn最大的区别<br>1.git每次修改新增都需要add<br>2.git每台电脑都有一个仓库<br>3.git是先提交到本地仓库， 再提交到远程仓库</p>
 <p>新人服务器搭建<br>1.新建一个新人服务器<br>2.初始化仓库<br>git init –bare<br>3.添加一个新的远程仓库<br>source control —&gt; master —&gt;config —&gt;remotes —&gt;add —&gt; add remote<br>4.将经理最新的代码提交到新人服务器<br>5.经理分配新人服务器的地址给新人</p>
-<p>GIT的分支管理<br>》在本地代码库给项目打上一个标签<br>git tag -a v1.0 -m ‘Version 1.0’<br>》查看当前标签<br>git tag<br>注意： 此时此刻打上的这个标签仅仅是一个本地标签。（和服务器没有关系）<br>》将标签添推送到远程代码库中<br>git push origin v1.0</p>
-<p>1.开发<br>2.发布<br>3.保存稳定版本<br>4.继续开发<br>5.出现bug<br>6.分配员工到分支上修复bug</p>
-<blockquote>
-<p>员工从服务器下载最新代码<br>》员工利用git checkout v1.0指令快速切换到1.0版本<br>》根据提示：开启一个新的分支开始修复代码<br>git checkout -b 1.0bug_fix</p>
-</blockquote>
-<p>7.合并修复后的代码到主线<br>8.备份稳定版本</p>
-<p>通过Xcode将代码提交到github上， 把仓库放在github上</p>
-<p>》1.注册一个github账号<br>》2.配置SSH Keys， 只要配置了SSH Keys就可以和github无缝衔接</p>
-<p>》点击昵称来到个人主页<br>》点击主页中的设置（setting）<br>》点击SSH Keys<br>》点击 generating SSH keys</p>
-<p>》1.检查本地的ssh keys<br>在“用户目录”下 ls -al ~/.ssh</p>
-<p>2.如果文件夹不存在需要手动创建一个<br>mkdir .ssh</p>
-<p>3.根据github的提示2生成ssh keys<br>在.ssh目录下执行 ssh-keygen -t rsa -C “your_email@example.com”<br>输入完成之后连续按下回车， 知道出现牛逼的图形位置</p>
+<p>GIT的分支管理<br>在本地代码库给项目打上一个标签<br>git tag -a v1.0 -m ‘Version 1.0’<br>查看当前标签<br>git tag<br>注意： 此时此刻打上的这个标签仅仅是一个本地标签。（和服务器没有关系）<br>将标签添推送到远程代码库中<br>git push origin v1.0</p>
+<p>1.开发<br>2.发布<br>3.保存稳定版本<br>4.继续开发<br>5.出现bug<br>6.分配员工到分支上修复bug<br>员工从服务器下载最新代码<br>员工利用git checkout v1.0指令快速切换到1.0版本<br>根据提示：开启一个新的分支开始修复代码<br>git checkout -b 1.0bug_fix<br>7.合并修复后的代码到主线<br>8.备份稳定版本</p>
+<p>通过Xcode将代码提交到github上， 把仓库放在github上<br>1.注册一个github账号<br>2.配置SSH Keys， 只要配置了SSH Keys就可以和github无缝衔接</p>
+<p>点击昵称来到个人主页<br>点击主页中的设置（setting）<br>点击SSH Keys<br>点击 generating SSH keys</p>
+<p>1.检查本地的ssh keys<br>在“用户目录”下 ls -al ~/.ssh<br>2.如果文件夹不存在需要手动创建一个<br>mkdir .ssh<br>3.根据github的提示2生成ssh keys<br>在.ssh目录下执行 ssh-keygen -t rsa -C “your_email@example.com”<br>输入完成之后连续按下回车， 知道出现牛逼的图形位置</p>
 <p>4.生成完公钥和私钥之后输入<br>ls -la查看是否生成成功   id_rsa（私钥） id_rsa.pub(公钥)</p>
 <p>5.根据提示3获得公钥<br>pbcopy &lt; ~/.ssh/id_rsa.pub</p>
-<p>6.点击 setting —》 ssh key —&gt;add ssh key<br>将刚才获取到得公钥添加进去</p>
+<p>6.点击 setting —&gt; ssh key —&gt; add ssh key<br>将刚才获取到得公钥添加进去</p>
 <p>7.更具github第4步提示， 验证公钥<br>验证成功网页上的灰色圆点会变成绿色</p>
-<p>8.拷贝到公钥之后打开github主页<br>》点击仓库（Repositories）<br>》再点击new来到github创建仓库界面</p>
-<p>9.通过github提供的地址下载一个空得仓库到本地<br>》创建一个新的项目到本地仓库文件夹中<br>》利用Xcode提交代码到github<br>》注意： 要求输入用户名密码时候， 输入的是github上显示的昵称而不是登录账号</p>
+<p>8.拷贝到公钥之后打开github主页<br>点击仓库（Repositories）<br>再点击new来到github创建仓库界面</p>
+<p>9.通过github提供的地址下载一个空得仓库到本地<br>创建一个新的项目到本地仓库文件夹中<br>利用Xcode提交代码到github<br>注意： 要求输入用户名密码时候， 输入的是github上显示的昵称而不是登录账号</p>
 </div><!--文章标签--><div class="tags"></div><!--评论--><div id="disqus_thread"><script>var disqus_shortname = 'zhuimar';
 var disqus_identifier = '2014/02/21/2014/Git/';
 var disqus_title = '版本管理Git';
@@ -258,7 +149,7 @@ var disqus_url = 'http://yoursite.com/2014/02/21/2014/Git/';
   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();</script><!--script(id='dsq-count-scr', src='//#{theme.disqus}.disqus.com/count.js', async)--></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" id="search" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><div class="widget-title"> 分类</div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><span class="category-list-count">19</span></li></ul></div><div class="widget"><div class="widget-title"> 标签</div><div class="tagcloud"></div></div><div class="widget"><div class="widget-title"> 最新文章</div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/12/20/2014/音乐锁屏键的处理/">音乐锁屏键的处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/02/2014/MemoryManagement/">MemoryManagement</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/17/2014/网络库的详解/">网络库AFNetworking详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/30/2014/图片缓存的优化/">图片缓存的优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/09/13/2014/储存方案/">常见的储存方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/25/2014/精度/">高精度NSDecimalNumber</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/03/2014/NSString为什么用copy修饰/">copy修饰NSString的原因</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/06/01/2014/UIViewController的方法和属性/">UIViewController的生命周期和属性</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/05/21/2014/Enum/">常用的三种种枚举</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/05/20/2014/const-static-extern简介/">关键字const、static、extern</a></li></ul></div><div class="widget"><div class="widget-title"> 友情链接</div><ul class="links-list"><li class="links-list-item"><a href="http://blog.csdn.net/leixiaohua1020" title="雷霄骅" target="_blank">雷霄骅</a></li></ul><ul class="links-list"><li class="links-list-item"><a href="http://blog.devtang.com/" title="唐巧" target="_blank">唐巧</a></li></ul><ul class="links-list"><li class="links-list-item"><a href="http://casatwy.com" title="田伟宇" target="_blank">田伟宇</a></li></ul></div></div></div></div><div id="footer">© <a href="/." rel="nofollow">zhuimar.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a> Theme<a target="_blank" href="https://github.com/7ye/maupassant-hexo"> Maupassant.</a></div><a id="back_to_top" href="javascript:void(0)" class="back_to_top"><span>△</span></a><script type="text/javascript" src="/js/totop.js?v=0.0.1"></script><link rel="stylesheet" href="/css/jquery.fancybox.css"><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.1"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+})();</script><!--script(id='dsq-count-scr', src='//#{theme.disqus}.disqus.com/count.js', async)--></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" id="search" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><div class="widget-title"> 分类</div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><span class="category-list-count">19</span></li></ul></div><div class="widget"><div class="widget-title"> 标签</div><div class="tagcloud"></div></div><div class="widget"><div class="widget-title"> 最新文章</div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/12/20/2014/音乐锁屏键的处理/">音乐锁屏键的处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/31/2014/苹果的内存管理/">苹果的内存管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/12/17/2014/网络库AFNetworking详解/">网络库AFNetworking</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/30/2014/图片缓存的优化/">图片缓存的优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/09/13/2014/储存方案/">常见的储存方案</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/25/2014/iOS精度丢失的处理/">iOS精度丢失的处理</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/08/03/2014/Copy,Strong修饰字符串的区别/">Copy&Strong修饰字符串的区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/06/01/2014/UIViewController的生命周期/">UIViewController的生命周期</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/05/21/2014/iOS常用的三种枚举/">常用的三种种枚举</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/05/20/2014/const-static-extern简介/">关键字const、static、extern</a></li></ul></div><div class="widget"><div class="widget-title"> 友情链接</div><ul class="links-list"><li class="links-list-item"><a href="http://blog.csdn.net/leixiaohua1020" title="雷霄骅" target="_blank">雷霄骅</a></li></ul><ul class="links-list"><li class="links-list-item"><a href="http://blog.devtang.com/" title="唐巧" target="_blank">唐巧</a></li></ul><ul class="links-list"><li class="links-list-item"><a href="http://casatwy.com" title="田伟宇" target="_blank">田伟宇</a></li></ul></div></div></div></div><div id="footer">© <a href="/." rel="nofollow">zhuimar.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a> Theme<a target="_blank" href="https://github.com/7ye/maupassant-hexo"> Maupassant.</a></div><a id="back_to_top" href="javascript:void(0)" class="back_to_top"><span>△</span></a><script type="text/javascript" src="/js/totop.js?v=0.0.1"></script><link rel="stylesheet" href="/css/jquery.fancybox.css"><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.1"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
   tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
   });</script><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>function auto_code_fit(){
   if($(".highlight").length != 0){
