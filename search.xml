@@ -4,6 +4,13 @@
   
     
     <entry>
+      <title><![CDATA[子View超出父View范围无法响应]]></title>
+      <url>http://yoursite.com/2014/08/04/2014/%E5%AD%90View%E8%B6%85%E5%87%BA%E7%88%B6View%E8%8C%83%E5%9B%B4%E6%97%A0%E6%B3%95%E5%93%8D%E5%BA%94/</url>
+      <content type="html"><![CDATA[<p>需要在UIView中实现下面的方法，这样UIButton超出的部分就可以点击了。<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">UIView</span> *)hitTest:(<span class="built_in">CGPoint</span>)point withEvent:(<span class="built_in">UIEvent</span> *)event &#123;</div><div class="line">    <span class="built_in">UIView</span> *result = [<span class="keyword">super</span> hitTest:point withEvent:event];</div><div class="line">    <span class="built_in">CGPoint</span> buttonPoint = [<span class="keyword">self</span>.button convertPoint:point fromView:<span class="keyword">self</span>];</div><div class="line">    <span class="keyword">if</span> ([<span class="keyword">self</span>.button pointInside:buttonPoint withEvent:event]) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.button;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[指定View倒角位置]]></title>
       <url>http://yoursite.com/2014/07/23/2014/%E6%8C%87%E5%AE%9AView%E5%80%92%E8%A7%92%E4%BD%8D%E7%BD%AE/</url>
       <content type="html"><![CDATA[<p>如果需要将UIView的4个角全部都为圆角，做法相当简单，只需设置其Layer的cornerRadius属性即可（项目需要使用QuartzCore框架）。而若要指定某几个角（小于4）为圆角而别的不变时，这种方法就不好用了。</p>
