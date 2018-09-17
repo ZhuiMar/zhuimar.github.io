@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><title>什么是离屏渲染 - zhuimar</title><meta name="description" content="Sun Aug 10 2014 00:00:00 GMT+0800 (CST)"><link type="text/css" rel="stylesheet" href="/css/pure.css?v=0.0.1"><link type="text/css" rel="stylesheet" href="/css/style.css?v=0.0.1"><script type="text/javascript" src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script></head></html><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">什么是离屏渲染</h1><a id="logo" href="/.">zhuimar</a></div><div id="nav-menu"><div class="bitcron_nav"><div class="site_nav_wrap"><div class="site_nav"><span class="a_container"><a href="/." class="selected active current">首页</a></span><span class="a_container"><a href="/archives/">归档</a></span><span class="a_container"><a href="/about/">关于</a></span><span class="a_container"><a href="/blog/">博客</a></span><span class="a_container"><a href="/music/">音乐</a></span><span class="a_container"><a href="/video/">视频</a></span><span class="a_container"><a href="/atom.xml">订阅</a></span></div></div></div></div></div><div id="layout" class="pure-g"><div class="pure-u-1"><div class="content_container"><div class="post"><h1 class="post-title">什么是离屏渲染</h1><div class="post-content"><p>GPU，中文翻译为“图形处理器”。GPU是相对于CPU的一个概念，GPU是显示卡的“心脏”，也就相当于CPU在电脑中的作用，它决定了该显卡的档次和大部分性能，同时也是2D显示卡和3D显示卡的区别依据。</p>
+<h3 id="GPU渲染机制"><a href="#GPU渲染机制" class="headerlink" title="GPU渲染机制"></a>GPU渲染机制</h3><p>CPU 计算好显示内容提交到 GPU，GPU 渲染完成后将渲染结果放入帧缓冲区，随后视频控制器会按照 VSync 信号逐行读取帧缓冲区的数据，经过可能的数模转换传递给显示器显示。</p>
+<h3 id="GPU屏幕渲染有以下两种方式"><a href="#GPU屏幕渲染有以下两种方式" class="headerlink" title="GPU屏幕渲染有以下两种方式"></a>GPU屏幕渲染有以下两种方式</h3><p><font color="#dd0000">On-Screen Rendering </font><br><br>意为当前屏幕渲染，指的是GPU的渲染操作是在当前用于显示的屏幕缓冲区中进行。</p>
+<p> <font color="#dd0000">Off-Screen Rendering </font><br><br>意为离屏渲染，指的是GPU在当前屏幕缓冲区以外新开辟一个缓冲区进行渲染操作。</p>
+<p> <font color="#dd0000">特殊的离屏渲染 </font><br><br>如果将不在GPU的当前屏幕缓冲区中进行的渲染都称为离屏渲染，那么就还有另一种特殊的“离屏渲染”方式： CPU渲染。如果我们重写了drawRect方法，并且使用任何Core Graphics的技术进行了绘制操作，就涉及到了CPU渲染。整个渲染过程由CPU在App内 同步地。完成，渲染得到的bitmap最后再交由GPU用于显示。备注：CoreGraphic通常是线程安全的，所以可以进行异步绘制，显示的时候再放回主线程，一个简单的异步绘制过程大致如下</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)display &#123;</div><div class="line">    <span class="built_in">dispatch_async</span>(backgroundQueue, ^&#123;</div><div class="line">        <span class="built_in">CGContextRef</span> ctx = <span class="built_in">CGBitmapContextCreate</span>(...);</div><div class="line">        <span class="comment">// draw in context</span></div><div class="line">        <span class="built_in">CGImageRef</span> img = <span class="built_in">CGBitmapContextCreateImage</span>(ctx);</div><div class="line">        <span class="built_in">CFRelease</span>(ctx);</div><div class="line">        <span class="built_in">dispatch_async</span>(mainQueue, ^&#123;</div><div class="line">            layer.contents = img;</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="离屏渲染的触发方式"><a href="#离屏渲染的触发方式" class="headerlink" title="离屏渲染的触发方式"></a>离屏渲染的触发方式</h3><p>设置了以下属性时，都会触发离屏绘制</p>
+<ul>
+<li>1.shouldRasterize(光栅化）</li>
+<li>2.masks(遮罩)</li>
+<li>3.shadows(阴影)</li>
+<li>4.edge antialiasing(抗锯齿）</li>
+<li>5.group opacity(不透明）</li>
+<li>6.复杂形状设置圆角</li>
+<li>7.渐变</li>
+</ul>
+<p>其中shouldRasterize (光栅化) 是比较特别的一种</p>
+<p><font color="#dd0000">光栅化概念：</font><br>将图转化为一个个栅格组成的图象。</p>
+<p><font color="#dd0000">光栅化特点：</font><br>每个元素对应帧缓冲区中的一像素。</p>
+<p>shouldRasterize = YES在其他属性触发离屏渲染的同时，会将光栅化后的内容缓存起来，如果对应的layer及其sublayers没有发生改变，在下一帧的时候可以直接复用。shouldRasterize = YES，这将隐式的创建一个位图，各种阴影遮罩等效果也会保存到位图中并缓存起来，从而减少渲染的频度（不是矢量图）。相当于光栅化是把GPU的操作转到CPU上了，生成位图缓存，直接读取复用。当你使用光栅化时，你可以开启“Color Hits Green and Misses Red”来检查该场景下光栅化操作是否是一个好的选择。绿色表示缓存被复用，红色表示缓存在被重复创建。如果光栅化的层变红得太频繁那么光栅化对优化可能没有多少用处。位图缓存从内存中删除又重新创建得太过频繁，红色表明缓存重建得太迟。可以针对性的选择某个较小而较深的层结构进行光栅化，来尝试减少渲染时间。</p>
+<p>注意：<br>对于经常变动的内容,这个时候不要开启,否则会造成性能的浪费，例如我们日程经常打交道的TableViewCell,因为TableViewCell的重绘是很频繁的（因为Cell的复用）,如果Cell的内容不断变化,则Cell需要不断重绘,如果此时设置了cell.layer可光栅化。则会造成大量的离屏渲染,降低图形性能。</p>
+<h3 id="为什么会使用离屏渲染"><a href="#为什么会使用离屏渲染" class="headerlink" title="为什么会使用离屏渲染"></a>为什么会使用离屏渲染</h3><p>当使用圆角，阴影，遮罩的时候，图层属性的混合体被指定为在未预合成之前不能直接在屏幕中绘制，所以就需要屏幕外渲染被唤起。屏幕外渲染并不意味着软件绘制，但是它意味着图层必须在被显示之前在一个屏幕外上下文中被渲染（不论CPU还是GPU)。所以当使用离屏渲染的时候会很容易造成性能消耗，因为在OPENGL里离屏渲染会单独在内存中创建一个屏幕外缓冲区并进行渲染，而屏幕外缓冲区跟当前屏幕缓冲区上下文切换是很耗性能的。</p>
+<h3 id="Instruments监测离屏渲染"><a href="#Instruments监测离屏渲染" class="headerlink" title="Instruments监测离屏渲染"></a>Instruments监测离屏渲染</h3><p>Instruments的Core Animation工具中有几个和离屏渲染相关的检查选项:</p>
+<ul>
+<li><p>Color Offscreen-Rendered Yellow<br>开启后会把那些需要离屏渲染的图层高亮成黄色，这就意味着黄色图层可能存在性能问题。</p>
+</li>
+<li><p>Color Hits Green and Misses Red<br>如果shouldRasterize被设置成YES，对应的渲染结果会被缓存，如果图层是绿色，就表示这些缓存被复用；如果是红色就表示缓存会被重复创建，这就表示该处存在性能问题了。</p>
+</li>
+</ul>
+<h3 id="iOS版本上的优化"><a href="#iOS版本上的优化" class="headerlink" title="iOS版本上的优化"></a>iOS版本上的优化</h3><p>iOS 9.0 之前UIimageView跟UIButton设置圆角都会触发离屏渲染。<br>iOS 9.0 之后UIButton设置圆角会触发离屏渲染，而UIImageView里png图片设置圆角不会触发离屏渲染了，如果设置其他阴影效果之类的还是会触发离屏渲染的。这可能是苹果也意识到离屏渲染会产生性能问题，所以能不产生离屏渲染的地方苹果也就不用离屏渲染了。</p>
+</div></div><div id="disqus_thread"><script>var disqus_shortname = 'zhuimar';
+var disqus_identifier = '2014/05/29/2014/什么是离屏渲染/';
+var disqus_title = '什么是离屏渲染';
+var disqus_url = 'http://yoursite.com/2014/05/29/2014/什么是离屏渲染/';
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><!--script(id='dsq-count-scr', src='//#{theme.disqus}.disqus.com/count.js', async)--></div></div></div></div><div id="footer">© <a href="/." rel="nofollow">zhuimar.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a> Theme<a target="_blank" href="https://github.com/7ye/maupassant-hexo"> Maupassant.</a></div><a id="back_to_top" href="javascript:void(0)" class="back_to_top"><span>△</span></a><script type="text/javascript" src="/js/totop.js?v=0.0.1"></script><link rel="stylesheet" href="/css/jquery.fancybox.css"><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.1"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+  });</script><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>function auto_code_fit(){
+  if($(".highlight").length != 0){
+    var pc_width = $(".post-content").width();
+    $(".highlight .code").find("pre").width((pc_width-70)+"px");
+  }
+}
+window.onresize = function(){
+  auto_code_fit();
+}
+auto_code_fit();</script></div></body>
